@@ -1,9 +1,10 @@
 <h1>Listings</h1>
+<%# FIX ME! make page responsive, currently only displaying three columns at max width %>
 
-<div class="container">
-<div class="row row-cols-4">
+<div class="container-fluid">
+<div class="row">
 <% @listings.each do |listing| %>
-    <div class="card" style="width: 18rem;">
+    <div class="card col-11 col-sm-7 col-md-6 col-lg-3 col-xl-2" style="width: 18rem;">
     <img src="https://www.noveltytoyworld.co.uk/ekmps/shops/aef66f/images/rubber-ducks-wholesale-yellow-5cm-quantity-2000-please-enquire-for-price-availability-[0]-0-p.jpg" class="card-img-top" alt="...">
     <div class="card-body">
     <h5 class="card-title"><%= listing.name %></h5>
