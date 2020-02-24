@@ -1,0 +1,17 @@
+<%= form_with(model: @listing, local: true) do |form| %>
+    <div>
+        <%= form.label :name %>
+        <%= form.text_field :name %>
+    </div>
+    <div>
+        <%= form.label :description %>
+        <%= form.text_area :description %>
+    </div>
+    <div>
+        <%= form.label :price %>
+        <%= form.number_field :price, min: 0 %>
+    </div>
+    <div>
+        <%= form.submit %>
+    </div>
+<% end %>

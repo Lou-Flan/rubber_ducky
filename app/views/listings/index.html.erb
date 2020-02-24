@@ -1,0 +1,12 @@
+<h1>Listings</h1>
+
+<% @listings.each do |listing| %>
+    <p><%= listing.name %></p>
+    <p><%= listing.description %></p>
+    <p><%= listing.price %></p>
+    <%= link_to "edit", edit_listing_path(listing.id) %>
+    <%= link_to "show", listing_path(listing.id) %>
+    <%= link_to "delete", listing_path(listing),
+              method: :delete,
+              data: { confirm: "Are you sure?" } %>
+<% end %>
