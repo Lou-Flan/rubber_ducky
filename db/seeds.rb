@@ -15,3 +15,4 @@ for i in 1..10
         )
     puts "Created #{i} listings"
 end
+
