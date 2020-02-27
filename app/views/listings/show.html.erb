@@ -2,3 +2,9 @@
 <p>Name: <%= @listing.name %></p>
 <p>Description: <%= @listing.description %></p>
 <p>Price: <%= @listing.price %></p>
+<div>
+    <%= link_to "edit", edit_listing_path(@listing.id), class: "btn btn-primary middle" if @show_button %>
+    <%= link_to "delete", listing_path(@listing),
+            method: :delete,
+            data: { confirm: "Are you sure?" }, class: "btn btn-primary" if @show_button %>
+          </div>
