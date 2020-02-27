@@ -6,12 +6,20 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+for i in 1..2
+    User.create(
+        username: "username#{i}",
+        email: "#{i}@test.com",
+        password: "123456"
+    )
+    puts "created #{i} users"
+end
 
-# for i in 1..10
-#     Listing.create(
-#         name: Faker::DcComics.hero,
-#         description: Faker::Lorem.paragraph(sentence_count: rand(2..5)),
-#         price: Faker::Number.between(from: 1, to: 20)
-#         )
-#     puts "Created #{i} listings"
-# end
+for i in 1..10
+    Listing.create(
+        name: Faker::DcComics.hero,
+        description: Faker::Lorem.paragraph(sentence_count: rand(2..5)),
+        price: Faker::Number.between(from: 1, to: 20)
+        )
+    puts "Created #{i} listings"
+end
