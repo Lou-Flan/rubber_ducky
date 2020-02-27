@@ -14,4 +14,6 @@ class User < ApplicationRecord
           end
         end
         
+  has_many :listings
+
  end

@@ -19,7 +19,8 @@ for i in 1..10
     Listing.create(
         name: Faker::DcComics.hero,
         description: Faker::Lorem.paragraph(sentence_count: rand(2..5)),
-        price: Faker::Number.between(from: 1, to: 20)
+        price: Faker::Number.between(from: 1, to: 20), 
+        user_id: Faker::Number.between(from: 1, to: 2)
         )
     puts "Created #{i} listings"
 end
