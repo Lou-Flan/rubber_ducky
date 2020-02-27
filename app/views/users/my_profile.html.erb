@@ -1,2 +1,4 @@
 <h1><%= @user.username %></h1>
 <p>Bio: <%= @user.bio %></p>
+
+<%= link_to "edit profile", edit_user_path(current_user), class: 'btn btn-warning' %>
