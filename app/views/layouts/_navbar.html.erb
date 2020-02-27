@@ -29,6 +29,10 @@
 
 
             <% else %>
+
+          <li class="nav-item">
+            <%= link_to "ducks", listings_path, class: "nav-link" %>
+          </li>
           <li class="nav-item">
             <%= link_to "sign up", new_user_registration_path, class: "nav-link" %>
           </li>

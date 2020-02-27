@@ -1,6 +1,6 @@
 class ListingsController < ApplicationController
     before_action :set_listing, only: [:show, :edit, :update, :destroy]
-    before_action :authenticate_user!
+    # before_action :authenticate_user!, only: [:edit, :update, :destroy]
     before_action :set_user_listing, only: [:edit, :update, :destroy]
 
     def index
@@ -54,6 +54,14 @@ class ListingsController < ApplicationController
     
         if @listing == nil
             redirect_to listings_path
+        end
+    end
+
+    def verify_user
+        if current_user.id == listing.user.id
+            @show = true
+        else
+            @show = false
         end
     end
 

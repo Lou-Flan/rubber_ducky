@@ -18,11 +18,11 @@
             <h5 class="card-title"><%= listing.name %></h5>
             <p class="card-text" id="truncate"><%= listing.description %></p>
             <p class="card-title"><%= listing.price %></p>
-                <%= link_to "edit", edit_listing_path(listing.id), class: "btn btn-primary middle" if current_user.id == listing.user.id%>
+                <%= link_to "edit", edit_listing_path(listing.id), class: "btn btn-primary middle" if @show == true %>
                 <%= link_to "show", listing_path(listing.id), class: "btn btn-outline-secondary" %>
                 <%= link_to "delete", listing_path(listing),
                       method: :delete,
-                      data: { confirm: "Are you sure?" }, class: "btn btn-primary" if current_user.id == listing.user.id %>
+                      data: { confirm: "Are you sure?" }, class: "btn btn-primary" if @show == true %>
           </div>
           </div>
         </div>
