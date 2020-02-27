@@ -1,0 +1,2 @@
+      invoke  active_record
+   identical    db/migrate/20200227015020_add_purchased_to_listings.rb
