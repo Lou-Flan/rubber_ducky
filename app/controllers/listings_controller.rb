@@ -1,8 +1,8 @@
 class ListingsController < ApplicationController
     before_action :set_listing, only: [:show, :edit, :update, :destroy]
-    # before_action :authenticate_user!, only: [:edit, :update, :destroy]
+    before_action :authenticate_user!, only: [:edit, :update, :destroy, :show]
     before_action :set_user_listing, only: [:edit, :update, :destroy]
-    # before_action :show_button
+    # before_action :logged_in, only: [:index]
 
     def index
         @listings = Listing.all
@@ -11,6 +11,8 @@ class ListingsController < ApplicationController
     def show
         if current_user.id == @listing.user.id
             @show_button = true
+        elsif current_user.id == nil
+            @show_button = false
         end
     end
 
@@ -60,12 +62,6 @@ class ListingsController < ApplicationController
             redirect_to listings_path
         end
     end
-
-    # def show_button
-    #     if current_user.id == @listing.user.id
-    #         @show_button = true
-    #     end
-    # end
 
     def listing_params
         params.require(:listing).permit(:name, :description, :price, :picture)
