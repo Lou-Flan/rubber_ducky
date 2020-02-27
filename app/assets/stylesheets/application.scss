@@ -35,3 +35,25 @@ $body-font: "Noto Serif KR";
     color:black;
     // text-shadow:2px 2px #333;
   }
+
+  #truncate {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .card {
+    margin-top: 20px;
+  }
+
+  .card:hover {
+    transform: translateY(-5px) scale(1.005) translateZ(0);
+    box-shadow: 0 24px 36px rgba(0,0,0,0.11);
+    color: rgb(31, 148, 70);
+  }
+
+  #sticky-footer {
+    flex-shrink: none;
+  }
+

@@ -1,28 +1,37 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <a class="navbar-brand" href="#">Hidden brand</a>
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-
-<li class="nav-item">
-    <% if current_user %>
-      <%= link_to "log out", destroy_user_session_path,
-      method: :delete, class: "nav-link" %>
-</li>
-    <% else %>
-<li class="nav-item">
-      <%= link_to "sign up", new_user_registration_path, class: "nav-link" %>
-</li>
-<li class="nav-item">
-      <%= link_to "login", new_user_session_path, class: "nav-link" %>
-</li>
-    <% end %>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+  <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <span><%= link_to "dev-duck-swap", root_path, class: "navbar-brand" %></span>
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+        <%# change the nav bar items based on whether the user is logged in and if they have listings/favourites %>
+            <% if current_user %>
+          <li class="nav-item">
+            <%= link_to "ducks", listings_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "sell", new_listing_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "profile", profile_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "log out", destroy_user_session_path,
+                method: :delete, class: "nav-link" %>
+          </li>
+            <% else %>
+          <li class="nav-item">
+            <%= link_to "sign up", new_user_registration_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "login", new_user_session_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item notice"><%= notice %>
+          </li>
+          <li class="nav-item alert"><%= alert %>
+          </li>
+              <% end %>
+        </ul>
   </div>
 </nav>

@@ -1,8 +1,9 @@
-<div class="container-fluid">
-  <div class="row">
+<div class="container-fluid padding">
+  <div class="row padding">
 
       <% @listings.each do |listing| %>
-        <div class="card col-11 col-sm-7 col-md-6 col-lg-3 col-xl-2" style="width: 18rem;">
+        <div class="col-md-4">
+        <div class="card">
           <% if listing.picture.attached? %>
             <%= image_tag(listing.picture, {class: "card-img-top"}) %>
           <% else %>
@@ -11,13 +12,14 @@
 
           <div class="card-body">
             <h5 class="card-title"><%= listing.name %></h5>
-            <p class="card-text"><%= listing.description %></p>
-              <p class="card-title"><%= listing.price %></p>
-                <%= link_to "edit", edit_listing_path(listing.id), class: "btn btn-primary" if current_user.id == listing.user.id%>
-                <%= link_to "show", listing_path(listing.id), class: "btn btn-primary" %>
+            <p class="card-text" id="truncate"><%= listing.description %></p>
+            <p class="card-title"><%= listing.price %></p>
+                <%= link_to "edit", edit_listing_path(listing.id), class: "btn btn-primary middle" if current_user.id == listing.user.id%>
+                <%= link_to "show", listing_path(listing.id), class: "btn btn-outline-secondary" %>
                 <%= link_to "delete", listing_path(listing),
                       method: :delete,
                       data: { confirm: "Are you sure?" }, class: "btn btn-primary" if current_user.id == listing.user.id %>
+          </div>
           </div>
         </div>
       <% end %>
@@ -25,3 +27,6 @@
   </div>
 </div>
 
+ <%# <div class="card col-md-4" style="width: 18rem; margin: 1rem;"> %>
+
+<%# card col-11 col-sm-7 col-md-6 col-lg-3 col-xl-2 %>

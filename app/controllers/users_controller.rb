@@ -3,7 +3,6 @@ class UsersController < ApplicationController
     before_action :authenticate_user!
 
     def my_profile
-        console
     end
 
     def update
