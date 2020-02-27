@@ -13,6 +13,11 @@
           <li class="nav-item">
             <%= link_to "sell", new_listing_path, class: "nav-link" %>
           </li>
+            <% if Listing.exists?(user_id: current_user.id) %>
+              <li class="nav-item">
+                <%= link_to "manage listings", profile_path, class: "nav-link" %>
+              </li>
+            <% end %>
           <li class="nav-item">
             <%= link_to "profile", profile_path, class: "nav-link" %>
           </li>
@@ -20,6 +25,9 @@
             <%= link_to "log out", destroy_user_session_path,
                 method: :delete, class: "nav-link" %>
           </li>
+
+
+
             <% else %>
           <li class="nav-item">
             <%= link_to "sign up", new_user_registration_path, class: "nav-link" %>
@@ -27,10 +35,10 @@
           <li class="nav-item">
             <%= link_to "login", new_user_session_path, class: "nav-link" %>
           </li>
-          <li class="nav-item notice"><%= notice %>
-          </li>
-          <li class="nav-item alert"><%= alert %>
-          </li>
+          <%# <li class="nav-item notice">= notice %>
+          <%# </li> %>
+          <%# <li class="nav-item alert">= alert %>
+          <%# </li> %>
               <% end %>
         </ul>
   </div>

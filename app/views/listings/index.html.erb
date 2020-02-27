@@ -1,8 +1,12 @@
-<div class="container-fluid padding">
+<div class="container-fluid">
+    <h1 class="hero-title text-center">find an experienced duck</h5>
+</div>
+
+<div class="frame container-fluid padding">
   <div class="row padding">
 
       <% @listings.each do |listing| %>
-        <div class="col-md-4">
+        <div class="col-md-3">
         <div class="card">
           <% if listing.picture.attached? %>
             <%= image_tag(listing.picture, {class: "card-img-top"}) %>
@@ -27,6 +31,3 @@
   </div>
 </div>
 
- <%# <div class="card col-md-4" style="width: 18rem; margin: 1rem;"> %>
-
-<%# card col-11 col-sm-7 col-md-6 col-lg-3 col-xl-2 %>

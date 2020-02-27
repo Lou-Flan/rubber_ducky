@@ -15,5 +15,28 @@
     <a href="#" class="btn btn-outline-info">sell a duck »</a>
 </div> %>
 
-<%# FIX ME! %>
-<%# SHOW THE FOUR MOST RECENT LISTING HERE %>
+<%# SHOWS THE FIVE MOST RECENT LISTING HERE %>
+<div class="frame container-fluid padding">
+  <div class="row padding d-flex justify-content-between">
+
+      <% @listings.each do |listing| %>
+        <div class="col-md-2">
+        <div class="card">
+          <% if listing.picture.attached? %>
+            <%= image_tag(listing.picture, {class: "card-img-top"}) %>
+          <% else %>
+            <%= image_tag("duck.png", {class: "card-img-top"}) %>
+          <% end %>
+
+          <div class="card-body">
+            <h5 class="card-title"><%= listing.name %></h5>
+            <p class="card-text" id="truncate"><%= listing.description %></p>
+            <p class="card-title"><%= listing.price %></p>
+                <%= link_to "show", listing_path(listing.id), class: "btn btn-outline-secondary" %>
+          </div>
+          </div>
+        </div>
+      <% end %>
+
+  </div>
+</div>
