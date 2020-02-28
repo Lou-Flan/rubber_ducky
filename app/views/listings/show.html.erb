@@ -10,6 +10,8 @@
           </div>
 
 <% if current_user %>
-  <%= link_to "favorite",   favorite_listing_path(@listing, type: "favorite"), method: :put %>
-  <%= link_to "unfavorite", favorite_listing_path(@listing, type: "unfavorite"), method: :put %>
+  <%= link_to "favorite", favorite_listing_path(@listing, type: "favorite"), method: :put unless current_user.favorite_ids.include? params[:id].to_i %>
+  <%= link_to "unfavorite", favorite_listing_path(@listing, type: "unfavorite"), method: :put if current_user.favorite_ids.include? params[:id].to_i %>
 <% end %>
+
+        

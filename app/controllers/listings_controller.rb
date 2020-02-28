@@ -14,6 +14,7 @@ class ListingsController < ApplicationController
         elsif current_user.id == nil
             @show_button = false
         end
+        console
     end
 
     def new
@@ -47,17 +48,17 @@ class ListingsController < ApplicationController
         redirect_to listings_path
     end
 
-      # Add and remove favorite recipes
+# Add and remove favorite listings
   # for current_user
   def favorite
     type = params[:type]
     if type == "favorite"
       current_user.favorites << @listing
-    #   redirect_to :back, notice: 'You favorited #{@listing.name}'
+      redirect_to listing_path, notice: 'You favorited #{@listing.name}'
 
     elsif type == "unfavorite"
       current_user.favorites.delete(@listing)
-    #   redirect_to :back, notice: 'Unfavorited #{@listing.name}'
+      redirect_to listing_path, notice: 'Unfavorited #{@listing.name}'
 
     else
       # Type missing, nothing happens
