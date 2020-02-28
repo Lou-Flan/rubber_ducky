@@ -1,5 +1,5 @@
 class ListingsController < ApplicationController
-    before_action :set_listing, only: [:show, :edit, :update, :destroy]
+    before_action :set_listing, only: [:show, :edit, :update, :destroy, :favorite]
     before_action :authenticate_user!, only: [:edit, :update, :destroy, :show]
     before_action :set_user_listing, only: [:edit, :update, :destroy]
     # before_action :logged_in, only: [:index]
@@ -46,6 +46,24 @@ class ListingsController < ApplicationController
  
         redirect_to listings_path
     end
+
+      # Add and remove favorite recipes
+  # for current_user
+  def favorite
+    type = params[:type]
+    if type == "favorite"
+      current_user.favorites << @listing
+    #   redirect_to :back, notice: 'You favorited #{@listing.name}'
+
+    elsif type == "unfavorite"
+      current_user.favorites.delete(@listing)
+    #   redirect_to :back, notice: 'Unfavorited #{@listing.name}'
+
+    else
+      # Type missing, nothing happens
+      redirect_to :back, notice: 'Nothing happened.'
+    end
+  end
 
     private
 

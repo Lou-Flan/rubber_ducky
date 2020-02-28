@@ -15,5 +15,7 @@ class User < ApplicationRecord
         end
         
   has_many :listings
+  has_many :favorite_listings  
+  has_many :favorites, through: :favorite_listings, source: :listing
 
  end

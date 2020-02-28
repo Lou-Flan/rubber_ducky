@@ -8,3 +8,8 @@
             method: :delete,
             data: { confirm: "Are you sure?" }, class: "btn btn-primary" if @show_button %>
           </div>
+
+<% if current_user %>
+  <%= link_to "favorite",   favorite_listing_path(@listing, type: "favorite"), method: :put %>
+  <%= link_to "unfavorite", favorite_listing_path(@listing, type: "unfavorite"), method: :put %>
+<% end %>

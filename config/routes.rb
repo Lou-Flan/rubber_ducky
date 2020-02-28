@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   get 'page/not_found'
   devise_for :users, path: "", path_names: {sign_in: "login", sign_out: "logout", sign_up: "register"}
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :listings
+  resources :listings do
+    put :favorite, on: :member
+  end
+  
   get "/", to: "pages#home", as: :root
   get "/profile", to: "users#my_profile", as: "user"
 
