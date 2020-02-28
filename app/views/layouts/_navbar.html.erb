@@ -13,11 +13,19 @@
           <li class="nav-item">
             <%= link_to "sell", new_listing_path, class: "nav-link" %>
           </li>
+
             <% if Listing.exists?(user_id: current_user.id) %>
               <li class="nav-item">
-                <%= link_to "manage listings", profile_path, class: "nav-link" %>
+                <%= link_to "manage listings", manage_listings_path, class: "nav-link" %>
               </li>
             <% end %>
+
+            <% if current_user.favorite_ids.length > 0 %>
+              <li class="nav-item">
+                <%= link_to "favorites", profile_path, class: "nav-link" %>
+              </li>
+            <% end %>
+
           <li class="nav-item">
             <%= link_to "profile", profile_path, class: "nav-link" %>
           </li>
@@ -39,10 +47,8 @@
           <li class="nav-item">
             <%= link_to "login", new_user_session_path, class: "nav-link" %>
           </li>
-          <%# <li class="nav-item notice">= notice %>
-          <%# </li> %>
-          <%# <li class="nav-item alert">= alert %>
-          <%# </li> %>
+          <li class="nav-item notice"><%= notice %></li>
+          <li class="nav-item alert"><%= alert %></li>
               <% end %>
         </ul>
   </div>

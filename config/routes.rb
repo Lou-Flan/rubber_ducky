@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :listings do
     put :favorite, on: :member
   end
-  
+
   get "/", to: "pages#home", as: :root
   get "/profile", to: "users#my_profile", as: "user"
 
@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   put  "/profile", to: "users#update"
   get "/profile/edit", to: "users#edit", as: "edit_user"
   
+  get "/manage", to: "listings#manage_listings", as: "manage_listings"
+
   get "/:path", to: "pages#not_found"
   
 end

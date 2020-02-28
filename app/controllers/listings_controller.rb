@@ -9,12 +9,6 @@ class ListingsController < ApplicationController
     end
 
     def show
-        if current_user.id == @listing.user.id
-            @show_button = true
-        elsif current_user.id == nil
-            @show_button = false
-        end
-        console
     end
 
     def new
@@ -64,6 +58,9 @@ class ListingsController < ApplicationController
       # Type missing, nothing happens
       redirect_to :back, notice: 'Nothing happened.'
     end
+  end
+
+  def manage_listings
   end
 
     private
