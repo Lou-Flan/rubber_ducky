@@ -15,6 +15,14 @@
         <%= form.label :picture %> <%= form.file_field :picture, accept:
         'image/png,image/gif,image/jpeg,image/jpg' %>
     </div>
+    <% @experience.each do |exp|%>
+        <div>
+            <%= form.label "#{exp.language}".to_sym %>
+            <%= check_box_tag "listing[experience_ids][]", exp.id, @listing.experience_ids.include?(exp.id) %>
+
+            <%#= form.select(:experience_id, @experience.map{|lang| [lang.language, lang.id]}) %>
+        <div>
+    <% end %>
     <div>
         <%= form.submit %>
     </div>

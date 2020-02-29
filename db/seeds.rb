@@ -24,3 +24,10 @@ for i in 1..10
         )
     puts "Created #{i} listings"
 end
+
+tech = ["ruby", "javascript", "shell", "python", "C#"]
+
+for i in tech 
+    Experience.create(language: i)
+    puts "created #{i} languages"
+end

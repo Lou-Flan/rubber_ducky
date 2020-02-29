@@ -4,6 +4,10 @@
 <p>Name: <%= @listing.name %></p>
 <p>Description: <%= @listing.description %></p>
 <p>Price: <%= @listing.price %></p>
+<p>Experience: <% @listing.experiences.each do |lang| %>
+<%= lang.language %>
+<% end %>
+</p>
 <div>
     <%= link_to "edit", edit_listing_path(@listing.id), class: "btn btn-primary middle" if current_user.id == @listing.user.id %>
     <%= link_to "delete", listing_path(@listing),

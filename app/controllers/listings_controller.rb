@@ -2,6 +2,8 @@ class ListingsController < ApplicationController
     before_action :set_listing, only: [:show, :edit, :update, :destroy, :favorite]
     before_action :authenticate_user!, only: [:edit, :update, :destroy, :show]
     before_action :set_user_listing, only: [:edit, :update, :destroy]
+    before_action :experience
+    # before_action :set_experience, only: [:edit, :update]
     # before_action :logged_in, only: [:index]
 
     def index
@@ -9,15 +11,18 @@ class ListingsController < ApplicationController
     end
 
     def show
+        console
     end
 
     def new
         @listing = Listing.new
+        @listing.listings_experience.build
+        # @experience = Experience.all 
     end
 
     def create
         @listing = current_user.listings.create(listing_params)
-        	
+
         if @listing.errors.any?
             render "new"
         else
@@ -26,6 +31,7 @@ class ListingsController < ApplicationController
     end
 
     def edit
+        console
     end
 
     def update
@@ -60,6 +66,10 @@ class ListingsController < ApplicationController
     end
   end
 
+#   def add_experience
+#     @listing.listings_experience << experience.id
+#     end
+
   def show_favorites
   end
 
@@ -82,8 +92,17 @@ class ListingsController < ApplicationController
         end
     end
 
+    def experience
+        @experience = Experience.all
+    end
+
+    # def set_experience
+
+    #     @listing.listings_experience.create(params[:experience_id])
+    # end
+
     def listing_params
-        params.require(:listing).permit(:name, :description, :price, :picture)
+        params.require(:listing).permit(:name, :description, :price, :picture, experience_ids: [])
     end
 
 end

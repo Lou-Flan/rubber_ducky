@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_28_033126) do
+ActiveRecord::Schema.define(version: 2020_02_29_034854) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,12 @@ ActiveRecord::Schema.define(version: 2020_02_28_033126) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "experiences", force: :cascade do |t|
+    t.string "language"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "favorite_listings", force: :cascade do |t|
     t.bigint "listing_id"
     t.bigint "user_id"
@@ -54,6 +60,15 @@ ActiveRecord::Schema.define(version: 2020_02_28_033126) do
     t.bigint "user_id"
     t.boolean "purchased", default: false
     t.index ["user_id"], name: "index_listings_on_user_id"
+  end
+
+  create_table "listings_experiences", force: :cascade do |t|
+    t.bigint "listing_id"
+    t.bigint "experience_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["experience_id"], name: "index_listings_experiences_on_experience_id"
+    t.index ["listing_id"], name: "index_listings_experiences_on_listing_id"
   end
 
   create_table "users", force: :cascade do |t|
