@@ -1,0 +1,14 @@
+
+<% current_user.favorites.each do |listing| %>
+
+<h1><%= listing.name %></h1>
+<p><%= listing.name %></p>
+<p><%= listing.description %> </p> 
+<p><%= listing.price %></p>
+<div>
+<%= link_to "show", listing_path(listing.id), class: "btn btn-outline-secondary" %>
+
+</div>
+
+<% end %>
+

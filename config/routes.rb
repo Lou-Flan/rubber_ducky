@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   put  "/profile", to: "users#update"
   get "/profile/edit", to: "users#edit", as: "edit_user"
   
+  get "/favorites", to: "listings#show_favorites", as: "show_favorites"
   get "/manage", to: "listings#manage_listings", as: "manage_listings"
 
   get "/:path", to: "pages#not_found"

@@ -60,6 +60,9 @@ class ListingsController < ApplicationController
     end
   end
 
+  def show_favorites
+  end
+
   def manage_listings
   end
 

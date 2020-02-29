@@ -22,7 +22,7 @@
 
             <% if current_user.favorite_ids.length > 0 %>
               <li class="nav-item">
-                <%= link_to "favorites", profile_path, class: "nav-link" %>
+                <%= link_to "favorites", show_favorites_path, class: "nav-link" %>
               </li>
             <% end %>
 
