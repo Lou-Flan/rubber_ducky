@@ -1,3 +1,5 @@
+
+
 <h1><%= @listing.name %></h1>
 <p>Name: <%= @listing.name %></p>
 <p>Description: <%= @listing.description %></p>
@@ -10,8 +12,16 @@
           </div>
 
 <% if current_user %>
-  <%= link_to "favorite", favorite_listing_path(@listing, type: "favorite"), method: :put unless current_user.favorite_ids.include? params[:id].to_i %>
-  <%= link_to "unfavorite", favorite_listing_path(@listing, type: "unfavorite"), method: :put if current_user.favorite_ids.include? params[:id].to_i %>
+  <%= link_to image_tag("favourite.png"), favorite_listing_path(@listing, type: "favorite"), method: :put unless current_user.favorite_ids.include? params[:id].to_i %>
+
+  <%= link_to image_tag("unfavourite.png"), favorite_listing_path(@listing, type: "unfavorite"), method: :put if current_user.favorite_ids.include? params[:id].to_i %>
+
 <% end %>
 
-        
+
+
+  <% if @listing.picture.attached? %>
+    <%= image_tag(@listing.picture, {class: "img-thumbnail"}) %>
+  <% else %>
+    <%= image_tag("duck.png", {class: "img-thumbnail"}) %>
+  <% end %>
