@@ -19,6 +19,13 @@
             <p class="card-text" id="truncate"><%= listing.description %></p>
             <p class="card-title"><%= listing.price %></p>
                 <%= link_to "show", listing_path(listing.id), class: "btn btn-outline-secondary" %>
+
+                <% if current_user %>
+  <%= link_to image_tag("favourite.png"), favorite_listing_path(listing, type: "favorite"), method: :put unless current_user.favorite_ids.include? listing.id %>
+
+  <%= link_to image_tag("unfavourite.png"), favorite_listing_path(listing, type: "unfavorite"), method: :put if current_user.favorite_ids.include? listing.id %>
+
+<% end %>
           </div>
           </div>
         </div>
