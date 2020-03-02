@@ -14,10 +14,63 @@
 
 /* Custom bootstrap variables must be set or imported *before* bootstrap*/
 @import "bootstrap"; 
-@import url('https://fonts.googleapis.com/css?family=Noto+Serif+KR|Varela+Round&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif+KR|Fredoka+One|Varela+Round&display=swap');
 
+$logo-font: "Fredoka One";
 $heading-font: "Varela Round";
 $body-font: "Noto Serif KR";
+
+h1 {
+  font-family: $logo-font;
+}
+
+p {
+  font-family: $heading-font;
+}
+
+#logo {
+  font-family: $logo-font;
+}
+.page-container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+
+  @media screen and (min-width: 1200px){
+    max-width: 980px; 
+  }
+
+  @media screen and (min-width: 1200px){
+    max-width: 1140px;
+  }
+
+  // @media screen and (min-width: 992px){
+  //   max-width: 960px;
+  // }
+
+  // @media screen and (min-width: 768px){
+  //     max-width: 720px;
+  //   }
+
+
+  // @media screen and (min-width: 576px){
+  //   max-width: 540px;
+  //  }
+}
+.col-12 {
+  padding-right: 25px;
+  padding-left: 25px;
+}
+
+.card-body{
+
+  .card-title{
+  font-family: $heading-font;
+  }
+
+}
 
 .frame {
   width: 75vw;
@@ -41,12 +94,12 @@ $body-font: "Noto Serif KR";
       margin-left: -3rem;
     }
 
-    .hero-title-right {
-      font-size: 4rem;
-      color:black;
-      text-align: end;
-      margin-right: -3rem;
-    }
+  .hero-title-right {
+    font-size: 4rem;
+    color:black;
+    text-align: end;
+    margin-right: -3rem;
+  }
 
 
   .carousel-button-left {
@@ -77,10 +130,14 @@ $body-font: "Noto Serif KR";
   .card:hover {
     transform: translateY(-5px) scale(1.005) translateZ(0);
     box-shadow: 0 24px 36px rgba(0,0,0,0.11);
-    color: rgb(31, 148, 70);
+
   }
 
   #sticky-footer {
     flex-shrink: none;
   }
 
+.img-view {
+  width: 100%;
+  height: auto;
+}

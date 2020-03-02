@@ -2,13 +2,13 @@
     <h1 class="hero-title text-center">find an experienced duck</h5>
 </div>
 
-<div class="frame container-fluid padding">
-  <div class="row padding">
+<div class="row row-cols-1 row-cols-md-4">
+  <%# <div class="row padding"> %>
 
       <% @listings.each do |listing| %>
       <% if !listing.purchased? then %>
-        <div class="col-md-3">
-        <div class="card">
+        <div class="col-sm-4">
+        <div class="card border-light">
           <% if listing.picture.attached? %>
             <%= image_tag(listing.picture, {class: "card-img-top"}) %>
           <% else %>
@@ -16,23 +16,27 @@
           <% end %>
 
           <div class="card-body">
-            <h5 class="card-title"><%= listing.name %></h5>
+        
+            <h5 class="card-title"><%= listing.name %>
+              <% if current_user %>
+              <%= link_to image_tag("favourite.png"), favorite_listing_path(listing, type: "favorite"), method: :put unless current_user.favorite_ids.include? listing.id %>
+              <%= link_to image_tag("unfavourite.png"), favorite_listing_path(listing, type: "unfavorite"), method: :put if current_user.favorite_ids.include? listing.id %>
+              <% end %>
+            </h5>
             <p class="card-text" id="truncate"><%= listing.description %></p>
-            <p class="card-title"><%= listing.price %></p>
-                <%= link_to "show", listing_path(listing.id), class: "btn btn-outline-secondary" %>
-
-                <% if current_user %>
-  <%= link_to image_tag("favourite.png"), favorite_listing_path(listing, type: "favorite"), method: :put unless current_user.favorite_ids.include? listing.id %>
-
-  <%= link_to image_tag("unfavourite.png"), favorite_listing_path(listing, type: "unfavorite"), method: :put if current_user.favorite_ids.include? listing.id %>
-
-<% end %>
+            <div class="card-title col-12 d-flex justify-content-end">
+                <%= "$#{listing.price}" %>
+</div>
+           <div class= "d-inline">
+             <%= link_to "show", listing_path(listing.id) %>
+               </div>
+              
           </div>
           </div>
         </div>
       <% end %>
       <% end %>
 
-  </div>
+  <%# </div> %>
 </div>
 
