@@ -32,12 +32,35 @@ $body-font: "Noto Serif KR";
     background-size: contain;
     background-attachment: fixed;
   }
-  .hero-title {
-    font-family: $heading-font;
-    font-size: 5em;
-    margin-top: 5rem;
+  .hero-title-left {
+    font-size: 4rem;
+    // margin-bottom: 9rem;
     color:black;
     // text-shadow:2px 2px #333;
+      text-align: start;
+      margin-left: -3rem;
+    }
+
+    .hero-title-right {
+      font-size: 4rem;
+      color:black;
+      text-align: end;
+      margin-right: -3rem;
+    }
+
+
+  .carousel-button-left {
+    text-align: start;
+    font-size: 4rem;
+    margin-bottom: 7rem;
+    margin-left: -3rem;
+  }
+
+  .carousel-button-right {
+    text-align: end;
+    font-size: 4rem;
+    margin-bottom: 7rem;
+    margin-right: -3rem;
   }
 
   #truncate {
@@ -61,3 +84,5 @@ $body-font: "Noto Serif KR";
     flex-shrink: none;
   }
 
+  #carousel {
+  }
