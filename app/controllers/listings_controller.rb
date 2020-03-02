@@ -11,8 +11,33 @@ class ListingsController < ApplicationController
     end
 
     def show
-        console
+        if @listing.purchased != false 
+            redirect_to listings_path
+          elsif current_user.id != @listing.user.id
+            @payment_button = true
+        session = Stripe::Checkout::Session.create(
+            payment_method_types: ['card'],
+            customer_email: current_user.email,
+            line_items: [{
+                name: @listing.name,
+                description: @listing.description,
+                amount: @listing.price * 100,
+                currency: 'aud',
+                quantity: 1,
+            }],
+            payment_intent_data: {
+                metadata: {
+                    user_id: current_user.id,
+                    listing_id: @listing.id
+                }
+            },
+            success_url: "#{root_url}payments/success?userId=#{current_user.id}&listingId=#{@listing.id}",
+            cancel_url: "#{root_url}listings"
+        )
+    
+        @session_id = session.id
     end
+end
 
     def new
         @listing = Listing.new

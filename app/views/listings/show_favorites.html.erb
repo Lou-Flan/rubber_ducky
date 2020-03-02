@@ -6,8 +6,13 @@
 <p><%= listing.description %> </p> 
 <p><%= listing.price %></p>
 <div>
+<% if listing.purchased == true %>
+    <p> no longer available</p>
+    <%= link_to "remove from favorites", favorite_listing_path(listing, type: "unfavorite"), method: :put%>
+     
+    <% else %>
 <%= link_to "show", listing_path(listing.id), class: "btn btn-outline-secondary" %>
-
+<% end %>
 </div>
 
 <% end %>

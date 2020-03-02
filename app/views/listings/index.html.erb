@@ -6,6 +6,7 @@
   <div class="row padding">
 
       <% @listings.each do |listing| %>
+      <% if !listing.purchased? then %>
         <div class="col-md-3">
         <div class="card">
           <% if listing.picture.attached? %>
@@ -29,6 +30,7 @@
           </div>
           </div>
         </div>
+      <% end %>
       <% end %>
 
   </div>

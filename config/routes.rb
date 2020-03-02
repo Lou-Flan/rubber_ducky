@@ -21,6 +21,9 @@ Rails.application.routes.draw do
   get "/favorites", to: "listings#show_favorites", as: "show_favorites"
   get "/manage", to: "listings#manage_listings", as: "manage_listings"
 
+  get "/payments/success", to: "payments#success"
+  post "/payments/webhook", to: "payments#webhook"
+
   get "/:path", to: "pages#not_found"
   
 end

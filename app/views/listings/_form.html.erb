@@ -1,15 +1,15 @@
 <%= form_with(model: @listing, local: true) do |form| %>
     <div>
         <%= form.label :name %>
-        <%= form.text_field :name %>
+        <%= form.text_field :name, :required => true %>
     </div>
     <div>
         <%= form.label :description %>
-        <%= form.text_area :description %>
+        <%= form.text_area :description, :required => true  %>
     </div>
     <div>
         <%= form.label :price %>
-        <%= form.number_field :price, min: 0 %>
+        <%= form.number_field :price, min: 0, :required => true  %>
     </div>
     <div>
         <%= form.label :picture %> <%= form.file_field :picture, accept:

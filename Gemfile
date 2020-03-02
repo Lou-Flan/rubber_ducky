@@ -70,3 +70,5 @@ gem "jquery-rails", "~> 4.3"
 gem "aws-sdk-s3", "~> 1.60"
 
 gem "devise", "~> 4.7"
+
+gem "stripe", "~> 5.17"

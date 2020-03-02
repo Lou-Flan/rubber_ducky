@@ -5,8 +5,31 @@
 <p>Description: <%= @listing.description %></p>
 <p>Price: <%= @listing.price %></p>
 <p>Experience: <% @listing.experiences.each do |lang| %>
-<%= lang.language %>
+  <%= lang.language %>
 <% end %>
+
+ <% if @payment_button %>
+        <button data-stripe="payment"> 
+        Buy now <%= number_to_currency(@listing.price) %>
+        </button>
+<% end %> 
+
+<script src="https://js.stripe.com/v3/"></script>
+
+<script>
+  document
+    .querySelector("[data-stripe='payment']")
+    .addEventListener("click", () => {
+      const stripe = Stripe(
+        "<%= Rails.application.credentials.dig(:stripe, :public_key) %>"
+      );
+
+      stripe.redirectToCheckout({
+        sessionId: "<%= @session_id %>"
+      });
+    });
+</script>
+
 </p>
 <div>
     <%= link_to "edit", edit_listing_path(@listing.id), class: "btn btn-primary middle" if current_user.id == @listing.user.id %>
