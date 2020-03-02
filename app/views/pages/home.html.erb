@@ -1,17 +1,17 @@
 <!--Carousel Wrapper-->
-<div id="carousel" class="carousel slide" data-ride="carousel">
+<div class=" hide-small">
+  <div id="carousel" class="carousel slide" data-ride="carousel">
   <!--Slides-->
-  <div class="carousel-inner" role="listbox">
-    <div class="carousel-item active">
-      <div class="view">
+    <div class="carousel-inner" role="listbox">
+      <div class="carousel-item active">
+        <div class="view">
        <%= image_tag("slider-01.png", {class: "d-block w-100"}) %>
-        <%# <div class="mask rgba-black-light"></div> %>
-      </div>
-      <div class="carousel-caption">
-        <h1 class="hero-title-left h3-responsive">got a bug?<br>get a duck.</h1>
-        <div class="carousel-button-left">
-        <a href="#" class="btn btn-secondary btn-lg">sign up »</a>
         </div>
+        <div class="carousel-caption">
+          <h1 class="hero-title-left h3-responsive">got a bug?<br>get a duck.</h1>
+            <div class="carousel-button-left">
+        <a href="#" class="btn btn-secondary btn-lg">sign up »</a>
+            </div>
       </div>
     </div>
     <div class="carousel-item">
@@ -27,9 +27,44 @@
       </div>
       </div>
     </div>
+    </div>
   <!--/.Slides-->
 </div>
+</div>
 <!--/.Carousel Wrapper-->
+<div class="hide-large">
+<div id="carousel-small" class="carousel slide" data-ride="carousel">
+  <!--Slides-->
+  <div class="carousel-inner" role="listbox">
+    <div class="carousel-item active">
+      <div class="view">
+       <%= image_tag("slider-3-03.png", {class: "d-block w-100"}) %>
+        <%# <div class="mask rgba-black-light"></div> %>
+      </div>
+      <div class="carousel-caption">
+        <h1 class="hero-title-left h3-responsive">got a bug?<br>get a duck.</h1>
+        <div class="carousel-button-left">
+        <a href="#" class="btn btn-secondary btn-lg">sign up »</a>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <!--Mask color-->
+      <div class="view">
+      <%= image_tag("slider-3-04.png", {class: "d-block w-100"}) %>
+        <div class="mask rgba-black-strong"></div>
+      </div>
+      <div class="carousel-caption">
+        <h1 class="hero-title-right h3-responsive">found a new bug?<br>find a new duck.</h1>
+        <div class="carousel-button-right">
+        <a href="#" class="btn btn-secondary btn-lg">sign up »</a>
+      </div>
+      </div>
+    </div>
+  <!--/.Slides-->
+</div>
+</div>
+</div>
 
 <div class="jumbotron bg-transparent jumbotron-fluid">
   <div class="container">

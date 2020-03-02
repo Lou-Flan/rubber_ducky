@@ -2,6 +2,12 @@
     <h1 class="hero-title text-center">find an experienced duck</h5>
 </div>
 
+<%= form_tag listings_path, method: :get do %>
+  <%= text_field_tag :search, params[:search] %>
+  <%= submit_tag("search", name: nil) %>
+<% end %>
+
+
 <div class="row row-cols-1 row-cols-md-4">
   <%# <div class="row padding"> %>
 
@@ -23,7 +29,7 @@
               <%= link_to image_tag("unfavourite.png"), favorite_listing_path(listing, type: "unfavorite"), method: :put if current_user.favorite_ids.include? listing.id %>
               <% end %>
             </h5>
-            <p class="card-text" id="truncate"><%= listing.description %></p>
+            <p class="card-text text-secondary" id="truncate"><%= listing.description %></p>
             <div class="card-title col-12 d-flex justify-content-end">
                 <%= "$#{listing.price}" %>
 </div>

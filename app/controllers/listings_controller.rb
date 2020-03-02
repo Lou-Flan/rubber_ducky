@@ -7,7 +7,7 @@ class ListingsController < ApplicationController
     # before_action :logged_in, only: [:index]
 
     def index
-        @listings = Listing.all
+        @listings = Listing.search(params[:search])
     end
 
     def show
@@ -127,7 +127,7 @@ end
     # end
 
     def listing_params
-        params.require(:listing).permit(:name, :description, :price, :picture, experience_ids: [])
+        params.require(:listing).permit(:listing_id, :search, :name, :description, :price, :picture, experience_ids: [])
     end
 
 end

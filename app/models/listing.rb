@@ -18,8 +18,18 @@ class Listing < ApplicationRecord
         end 
     end
 
-    # def set_experience
-    #     @listing.listings_experience.create(params[:experience])
-    # end
+    # method to use search bar, if no search params are present, all listings will be returned
+    # the search will look for close matches in listing name or description
+    def self.search(search)
+        if search
+            if search.present?
+                self.where("name || description ILIKE ?", "%#{search}%")
+            else
+                @listings = Listing.all.order('id desc')
+            end
+        else
+            @listings = Listing.all.order('id desc')
+        end
+    end
 
 end

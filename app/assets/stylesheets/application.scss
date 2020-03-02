@@ -16,8 +16,8 @@
 @import "bootstrap"; 
 @import url('https://fonts.googleapis.com/css?family=Noto+Serif+KR|Fredoka+One|Varela+Round&display=swap');
 
-$logo-font: "Fredoka One";
-$heading-font: "Varela Round";
+$logo-font: "Fredoka One", sans-serif;
+$heading-font: "Source Sans Pro", sans-serif;
 $body-font: "Noto Serif KR";
 
 h1 {
@@ -59,6 +59,29 @@ p {
   //   max-width: 540px;
   //  }
 }
+
+// #carousel{
+//   display: block;
+
+//   @media screen and (min-width: 980px){
+//     display: none;
+//   }
+
+
+@media screen and (max-width: 629px){
+  .hide-small{
+    display: none;
+}
+}
+
+
+  @media screen and (min-width: 630px){
+    .hide-large{
+    display: none;
+  }
+}
+
+
 .col-12 {
   padding-right: 25px;
   padding-left: 25px;
