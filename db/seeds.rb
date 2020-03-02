@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-for i in 1..2
+for i in 1..5
     User.create(
         username: "username#{i}",
         email: "#{i}@test.com",
@@ -15,7 +15,7 @@ for i in 1..2
     puts "created #{i} users"
 end
 
-for i in 1..10
+for i in 1..30
     Listing.create(
         name: Faker::DcComics.hero,
         description: Faker::Lorem.paragraph(sentence_count: rand(2..5)),
@@ -31,3 +31,4 @@ for i in tech
     Experience.create(language: i)
     puts "created #{i} languages"
 end
+
