@@ -18,4 +18,6 @@ class User < ApplicationRecord
   has_many :favorite_listings  
   has_many :favorites, through: :favorite_listings, source: :listing
 
+  has_many :conversations, :foreign_key => :sender_id
+
  end

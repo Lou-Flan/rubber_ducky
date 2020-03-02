@@ -22,6 +22,10 @@
 
 <% end %>
 
+<% if @listing.user.id != current_user.id %>
+   <%= @listing.user.username %> 
+   <%= link_to "Message seller", conversations_path(sender_id: current_user.id, recipient_id: @listing.user.id), method: "post" %>
+<% end %>
 
 
   <% if @listing.picture.attached? %>

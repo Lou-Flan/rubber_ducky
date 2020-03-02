@@ -7,6 +7,10 @@ Rails.application.routes.draw do
     put :favorite, on: :member
   end
 
+  resources :conversations do
+    resources :messages
+   end
+
   get "/", to: "pages#home", as: :root
   get "/profile", to: "users#my_profile", as: "user"
 
