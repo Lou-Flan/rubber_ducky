@@ -26,7 +26,7 @@ private
     end
 
     def profile_params
-        params.require(:user).permit(:bio)
+        params.require(:user).permit(:bio, :avatar)
     end
 
 end

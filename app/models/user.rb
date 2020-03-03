@@ -13,6 +13,8 @@ class User < ApplicationRecord
             errors.add(:username, :invalid)
           end
         end
+
+  has_one_attached :avatar
         
   has_many :listings
   has_many :favorite_listings  

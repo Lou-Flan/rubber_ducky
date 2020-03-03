@@ -55,6 +55,14 @@
   </script>
   </div>
 
+      <div>Seller: <%= @listing.user.username %>
+        <% if @listing.user.avatar.attached? %>
+            <%= image_tag(user.avatar, {class: "card-img-top"}) %>
+          <% else %>
+            <%= image_tag("default-user-01.png", {class: "card-img-top"}) %>
+          <% end %>
+    </div>
+
     <div>Experience: <% @listing.experiences.each do |lang| %>
         <%= lang.language %>
       <% end %>
