@@ -1,82 +1,53 @@
 <div class="container d-flex flex-column flex-md-row px-2 my-2 my-md-5">
-  
   <div class="content col-12 col-md-7 col-lg-8 p-0 pr-md-3">
+
     <div class="col-12 details">
       <h1><%= @listing.name %></h1>
       <p><%= @listing.description %></p>
-
-        <% if current_user %>
-  <%= link_to image_tag("favourite.png"), favorite_listing_path(@listing, type: "favorite"), method: :put unless current_user.favorite_ids.include? params[:id].to_i %>
-
-  <%= link_to image_tag("unfavourite.png"), favorite_listing_path(@listing, type: "unfavorite"), method: :put if current_user.favorite_ids.include? params[:id].to_i %>
-
-<% end %>
+      <%# FAVOURITES METHOD IN APPLICATION HELPER %>
+      <%= favourites(@listing) %>
     </div>
 
-<div class="col-12 p-0 main-preview mb-4 border">
-  <% if @listing.picture.attached? %>
-    <%= image_tag(@listing.picture, {class: "img-view"}) %>
-  <% else %>
-    <%= image_tag("duck.png", {class: "img-view"}) %>
-  <% end %>
-</div>
-</div>
+    <div class="col-12 p-0 main-preview mb-4 border">
+      <%= show_picture(@listing) %>
+    </div>
 
-<div class="sidebar col-5 col-lg-4 p-0 mx-2 d-md-block">
-<div class="col-12 p-3 bg-light"> 
-  <h1><%= " $ #{@listing.price}" %></h1>
-<div>
-    <%= link_to "edit", edit_listing_path(@listing.id), class: "btn btn-primary middle" if current_user.id == @listing.user.id %>
-    <%= link_to "delete", listing_path(@listing),
-            method: :delete,
-            data: { confirm: "Are you sure?" }, class: "btn btn-primary" if current_user.id == @listing.user.id %>
-          </div>
-
-   <% if @payment_button %>
-    <button class="btn btn-secondary btn-lg" data-stripe="payment"> 
-    Buy now
-    </button>
-  <% end %> 
-
-  <script src="https://js.stripe.com/v3/"></script>
-
-  <script>
-    document
-      .querySelector("[data-stripe='payment']")
-      .addEventListener("click", () => {
-        const stripe = Stripe(
-          "<%= Rails.application.credentials.dig(:stripe, :public_key) %>"
-        );
-
-        stripe.redirectToCheckout({
-          sessionId: "<%= @session_id %>"
-        });
-      });
-  </script>
   </div>
 
-      <div>Seller: <%= @listing.user.username %>
-        <% if @listing.user.avatar.attached? %>
-            <%= image_tag(user.avatar, {class: "card-img-top"}) %>
-          <% else %>
-            <%= image_tag("default-user-01.png", {class: "card-img-top"}) %>
-          <% end %>
+  <div class="sidebar col-5 col-lg-4 p-0 mx-2 d-md-block">
+    <div class="col-12 p-3 bg-light">
+      <h1><%= " $ #{@listing.price}" %></h1>
+    <%= edit(@listing) %><%= delete(@listing) %>
+      <% if current_user.id != @listing.user.id %>
+        <button class="btn btn-secondary btn-lg" data-stripe="payment">
+          Buy now
+        </button>
+      <% end %>
+      <script src="https://js.stripe.com/v3/"></script>
+      <script>
+        document
+          .querySelector("[data-stripe='payment']")
+          .addEventListener("click", () => {
+            const stripe = Stripe(
+              "<%= Rails.application.credentials.dig(:stripe, :public_key) %>"
+            );
+        
+            stripe.redirectToCheckout({
+              sessionId: "<%= @session_id %>"
+            });
+          });
+      </script>
     </div>
-
+    <div>Seller: <%= @listing.user.username %>
+<%# USER AVATAR HELPER %>
+    <%= show_avatar(@listing) %>
+    </div>
     <div>Experience: <% @listing.experiences.each do |lang| %>
         <%= lang.language %>
       <% end %>
     </div>
-
-
-
-<% if @listing.user.id != current_user.id %>
-   <%= link_to "Message #{@listing.user.username}", conversations_path(sender_id: current_user.id, recipient_id: @listing.user.id), method: "post" %>
-<% end %>
-
-</div>
-
-
-
-
+    <% if @listing.user.id != current_user.id %>
+      <%= link_to "Message #{@listing.user.username}", conversations_path(sender_id: current_user.id, recipient_id: @listing.user.id), method: "post" %>
+    <% end %>
+  </div>
 </div>

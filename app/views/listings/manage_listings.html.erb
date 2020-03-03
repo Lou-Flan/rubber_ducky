@@ -1,16 +1,20 @@
+<div class="container">
 
-<% current_user.listings.each do |listing| %>
+    <% current_user.listings.each do |listing| %>
+    <div class="row">
+        <div class="col"><%= show_picture(listing) %></div>
+        <div class="col-6">
+            <h1><%= listing.name %></h1>
+            <p><%= listing.price %></p>
+            <p><%= listing.description %></p>
+        </div>
+        <div class="col">
+            <%= link_to "show", listing_path(listing.id), class: "btn btn-outline-secondary" %>
+            <%= edit(listing) %><%= delete(listing) %>
+        
+        </div>
+    </div>
+    
 
-<h1><%= listing.name %></h1>
-<p><%= listing.name %></p>
-<p><%= listing.description %> </p> 
-<p><%= listing.price %></p>
-<div>
-<%= link_to "show", listing_path(listing.id), class: "btn btn-outline-secondary" %>
-    <%= link_to "edit", edit_listing_path(listing.id), class: "btn btn-primary middle" %>
-    <%= link_to "delete", listing_path(listing),
-            method: :delete,
-            data: { confirm: "Are you sure?" }, class: "btn btn-primary" %>
 </div>
-
 <% end %>

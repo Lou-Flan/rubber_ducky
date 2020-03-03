@@ -1,48 +1,34 @@
 <div class="container-fluid">
-    <h1 class="hero-title text-center">find an experienced duck</h5>
+  <h1 class="hero-title text-center">find an experienced duck</h5>
 </div>
-
+<%# SEARCH BAR %>
 <%= form_tag listings_path, method: :get do %>
   <%= text_field_tag :search, params[:search] %>
   <%= submit_tag("search", name: nil) %>
 <% end %>
 
-
 <div class="row row-cols-1 row-cols-md-4">
-  <%# <div class="row padding"> %>
-
-      <% @listings.each do |listing| %>
-      <% if !listing.purchased? then %>
-        <div class="col-sm-4">
+  <% @listings.each do |listing| %>
+    <% if !listing.purchased? then %>
+      <div class="col-sm-4">
         <div class="card border-light">
-          <% if listing.picture.attached? %>
-            <%= image_tag(listing.picture, {class: "card-img-top"}) %>
-          <% else %>
-            <%= image_tag("duck.png", {class: "card-img-top"}) %>
-          <% end %>
-
+        <%# SHOW PHOTO METHOD IN APPLICATION HELPER %>
+          <%= show_picture(listing) %>
           <div class="card-body">
-        
             <h5 class="card-title"><%= listing.name %>
-              <% if current_user %>
-              <%= link_to image_tag("favourite.png"), favorite_listing_path(listing, type: "favorite"), method: :put unless current_user.favorite_ids.include? listing.id %>
-              <%= link_to image_tag("unfavourite.png"), favorite_listing_path(listing, type: "unfavorite"), method: :put if current_user.favorite_ids.include? listing.id %>
-              <% end %>
+              <%# FAVOURITES METHOD IN APPLICATION HELPER %>
+              <%= favourites(listing) %>
             </h5>
             <p class="card-text text-secondary" id="truncate"><%= listing.description %></p>
             <div class="card-title col-12 d-flex justify-content-end">
-                <%= "$#{listing.price}" %>
-</div>
-           <div class= "d-inline">
-             <%= link_to "show", listing_path(listing.id) %>
-               </div>
-              
-          </div>
+              <%= "$#{listing.price}" %>
+            </div>
+            <div class= "d-inline">
+              <%= link_to "show", listing_path(listing.id) %>
+            </div>
           </div>
         </div>
-      <% end %>
-      <% end %>
-
-  <%# </div> %>
+      </div>
+    <% end %>
+  <% end %>
 </div>
-

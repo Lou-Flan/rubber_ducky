@@ -80,11 +80,7 @@
       <% @listings.each do |listing| %>
         <div class="col mb-4">
         <div class="card border-light">
-          <% if listing.picture.attached? %>
-            <%= image_tag(listing.picture, {class: "card-img-top"}) %>
-          <% else %>
-            <%= image_tag("duck.png", {class: "card-img-top"}) %>
-          <% end %>
+          <%= show_picture(listing) %>
 
           <div class="card-body">
             <h5 class="card-title"><%= listing.name %></h5>

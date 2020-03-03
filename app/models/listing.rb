@@ -9,7 +9,7 @@ class Listing < ApplicationRecord
     has_many :experiences, through: :listings_experience
 
     def button
-        if current_user.id == @listing.user.id
+        if current_user.id != @listing.user.id
             @show_button = true
         elsif current_user.id == nil
             @show_button = false

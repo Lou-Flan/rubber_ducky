@@ -42,7 +42,6 @@ end
     def new
         @listing = Listing.new
         @listing.listings_experience.build
-        # @experience = Experience.all 
     end
 
     def create
@@ -91,10 +90,6 @@ end
     end
   end
 
-#   def add_experience
-#     @listing.listings_experience << experience.id
-#     end
-
   def show_favorites
   end
 
@@ -120,11 +115,6 @@ end
     def experience
         @experience = Experience.all
     end
-
-    # def set_experience
-
-    #     @listing.listings_experience.create(params[:experience_id])
-    # end
 
     def listing_params
         params.require(:listing).permit(:listing_id, :search, :name, :description, :price, :picture, experience_ids: [])
