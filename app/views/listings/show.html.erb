@@ -18,10 +18,8 @@
     <div class="col-12 p-3 bg-light">
       <h1><%= " $ #{@listing.price}" %></h1>
     <%= edit(@listing) %><%= delete(@listing) %>
-      <% if current_user.id != @listing.user.id %>
-        <button class="btn btn-secondary btn-lg" data-stripe="payment">
-          Buy now
-        </button>
+      <% if @payment_button %>
+        <button class="btn btn-secondary btn-lg" data-stripe="payment">Buy now</button>
       <% end %>
       <script src="https://js.stripe.com/v3/"></script>
       <script>
@@ -38,6 +36,7 @@
           });
       </script>
     </div>
+    
     <div>Seller: <%= @listing.user.username %>
 <%# USER AVATAR HELPER %>
     <%= show_avatar(@listing) %>

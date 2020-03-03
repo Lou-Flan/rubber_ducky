@@ -1,12 +1,10 @@
 <%= form_with(model: @user, local: true) do |form| %>
-    <div>
-        <%= form.label :bio %>
-        <%= form.text_area :bio %>
-
-  <%= form.label :avatar %> <%= form.file_field :avatar, accept:
+  <div>
+    <%= form.label :bio %>
+    <%= form.text_area :bio %>
+    <%= form.label :avatar %> <%= form.file_field :avatar, accept:
   'image/png,image/gif,image/jpeg,image/jpg' %>
+  </div>
+  <%= form.submit %>
 </div>
-        <%= form.submit %>
-    </div>
 <% end %>
-

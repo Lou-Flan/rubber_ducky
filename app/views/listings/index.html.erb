@@ -9,7 +9,7 @@
 
 <div class="row row-cols-1 row-cols-md-4">
   <% @listings.each do |listing| %>
-    <% if !listing.purchased? then %>
+    <% if !listing.purchased %>
       <div class="col-sm-4">
         <div class="card border-light">
         <%# SHOW PHOTO METHOD IN APPLICATION HELPER %>
@@ -29,6 +29,6 @@
           </div>
         </div>
       </div>
-    <% end %>
+  <% end %>
   <% end %>
 </div>

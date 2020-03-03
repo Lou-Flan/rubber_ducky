@@ -11,8 +11,9 @@ class ListingsController < ApplicationController
     end
 
     def show
-        if @listing.purchased != false 
-            redirect_to listings_path
+        @listing = Listing.purchased?(params[:id])
+            if @listing == true then redirect_to listings_path
+                
           elsif current_user.id != @listing.user.id
             @payment_button = true
         session = Stripe::Checkout::Session.create(

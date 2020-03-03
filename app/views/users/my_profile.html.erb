@@ -1,10 +1,8 @@
 <h1><%= @user.username %></h1>
 <p>Bio: <%= @user.bio %></p>
-
 <% if @user.avatar.attached? %>
-            <%= image_tag(@user.avatar, {class: "card-img-top"}) %>
-          <% else %>
-            <%= image_tag("default-user-01.png", {class: "card-img-top"}) %>
-          <% end %>
-
+  <%= image_tag(@user.avatar, {class: "card-img-top"}) %>
+<% else %>
+  <%= image_tag("default-user-01.png", {class: "card-img-top"}) %>
+<% end %>
 <%= link_to "edit profile", edit_user_path(current_user), class: 'btn btn-warning' %>

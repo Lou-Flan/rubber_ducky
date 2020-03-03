@@ -21,15 +21,35 @@ class Listing < ApplicationRecord
     # method to use search bar, if no search params are present, all listings will be returned
     # the search will look for close matches in listing name or description
     def self.search(search)
-        if search
-            if search.present?
-                self.where("name || description ILIKE ?", "%#{search}%")
+            if search != "" && search != nil
+                return self.where("name || description ILIKE ?", "%#{search}%")
             else
-                @listings = Listing.all.order('id desc')
+                return self.all.order('id desc')
             end
+    end
+
+    def editable_by?(user)
+        user && (user == self.user)
+    end
+
+    def deletable_by?(user)
+        user && (user == self.user)
+    end
+
+    def self.purchased?(listing)
+        if self.find(listing).purchased == true
+            @listing = true
         else
-            @listings = Listing.all.order('id desc')
+            @listing = self.find(listing)
         end
     end
+
+#     def self.payment_button?(listing, current_user)
+#         if self.find(listing).user_id != current_user
+#              true
+#         else
+#              false
+#     end
+# end
 
 end

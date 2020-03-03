@@ -173,3 +173,13 @@ p {
   border-radius: 50%;
   display: inline-block;
 }
+
+.footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  padding-top: 60px;
+  padding-bottom: 20px;
+  /* Set the fixed height of the footer here */
+  // height: 100px;
+}
