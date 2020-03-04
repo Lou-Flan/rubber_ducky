@@ -1,6 +1,19 @@
-<div class="container">
+<div class="container-fluid">
+  <h1 class="hero-title text-center m-5">get your ducks in a row</h5>
+</div>
 
-    <% current_user.listings.each do |listing| %>
+<div class="container p-3">
+
+<div class="d-flex justify-content-around bg-light p-3"> 
+<h5>Sort your ducks by:</h5>
+  <%= content_tag :th, sort_link(@search, :name) %>
+  <%= content_tag :th, sort_link(@search, :price) %>
+  <%= content_tag :th, sort_link(@search, :created_at) %>
+  <%= content_tag :th, sort_link(@search, :updated_at) %>
+
+</div>
+
+    <% @listings.each do |listing| %>
     <div class="row">
         <div class="col"><%= show_picture(listing) %></div>
         <div class="col-6">
@@ -15,6 +28,6 @@
         </div>
     </div>
     
-
+</div>
 </div>
 <% end %>

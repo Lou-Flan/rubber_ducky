@@ -93,9 +93,13 @@ class ListingsController < ApplicationController
   end
 
   def show_favorites
+    @search = current_user.favorites.ransack(params[:q])
+    @listings = @search.result.includes(experiences: [])
   end
 
   def manage_listings
+    @search = current_user.listings.ransack(params[:q])
+    @listings = @search.result.includes(experiences: [])
   end
 
     private
