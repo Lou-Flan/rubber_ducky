@@ -36,7 +36,7 @@ module ApplicationHelper
         end
     end
 
-    # when method is called, the listing is parsed in then the deletable_by? method is called from the model and the current user id is parsed to it
+# when method is called, the listing is parsed in then the deletable_by? method is called from the model and the current user id is parsed to it
     def delete(listing)        
         if listing.deletable_by?(current_user)
             link_to "delete", listing_path(listing),method: :delete,
@@ -46,7 +46,15 @@ module ApplicationHelper
         end
     end
 
-    
+# displays different bootstrap styling depending on the notice level
+        def flash_class(level)
+          case level
+            when 'notice' then "alert alert-info"
+            when 'success' then "alert alert-success"
+            when 'error' then "alert alert-danger"
+            when 'alert' then "alert alert-warning"
+          end
+        end
 
 end
 

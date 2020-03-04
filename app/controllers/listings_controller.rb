@@ -3,8 +3,6 @@ class ListingsController < ApplicationController
     before_action :authenticate_user!, only: [:edit, :update, :destroy, :show]
     before_action :set_user_listing, only: [:edit, :update, :destroy]
     before_action :experience
-    # before_action :set_experience, only: [:edit, :update]
-    # before_action :logged_in, only: [:index]
 
     def index
         @search = Listing.ransack(params[:q])
@@ -57,7 +55,6 @@ class ListingsController < ApplicationController
     end
 
     def edit
-        console
     end
 
     def update
@@ -70,37 +67,34 @@ class ListingsController < ApplicationController
 
     def destroy
         @listing.destroy
- 
-        redirect_to listings_path
+        redirect_to manage_listings_path
     end
 
 # Add and remove favorite listings
   # for current_user
-  def favorite
-    type = params[:type]
-    if type == "favorite"
-      current_user.favorites << @listing
-      redirect_to show_favorites_path, notice: 'You favorited #{@listing.name}'
-
-    elsif type == "unfavorite"
-      current_user.favorites.delete(@listing)
-      redirect_to show_favorites_path, notice: 'Unfavorited #{@listing.name}'
-
-    else
-      # Type missing, nothing happens
-      redirect_to :back, notice: 'Nothing happened.'
+    def favorite
+        type = params[:type]
+        if type == "favorite"
+            current_user.favorites << @listing
+            redirect_to show_favorites_path, notice: "You favorited #{@listing.name}"
+        elsif type == "unfavorite"
+            current_user.favorites.delete(@listing)
+            redirect_to show_favorites_path, notice: "You unfavorited #{@listing.name}"
+        else
+        # Type missing, nothing happens
+            redirect_to :back, notice: 'Nothing happened.'
+        end
     end
-  end
 
-  def show_favorites
-    @search = current_user.favorites.ransack(params[:q])
-    @listings = @search.result.includes(experiences: [])
-  end
+    def show_favorites
+        @search = current_user.favorites.ransack(params[:q])
+        @listings = @search.result.includes(experiences: [])
+    end
 
-  def manage_listings
-    @search = current_user.listings.ransack(params[:q])
-    @listings = @search.result.includes(experiences: [])
-  end
+    def manage_listings
+        @search = current_user.listings.ransack(params[:q])
+        @listings = @search.result.includes(experiences: [])
+    end
 
     private
 
