@@ -126,17 +126,27 @@ p {
 
 
   .carousel-button-left {
+    position: absolute;
+    top: 60%;
+    left: 15%;
     text-align: start;
     font-size: 4rem;
-    margin-bottom: 7rem;
-    margin-left: -3rem;
+  }
+
+  .carousel-button-middle {
+    position: absolute;
+    top: 80%;
+    left: 37%;
+    text-align: start;
+    font-size: 4rem;
   }
 
   .carousel-button-right {
+    position: absolute;
+    top: 60%;
+    right: 15%;
     text-align: end;
     font-size: 4rem;
-    margin-bottom: 7rem;
-    margin-right: -3rem;
   }
 
   #truncate {
@@ -182,4 +192,9 @@ p {
   padding-bottom: 20px;
   /* Set the fixed height of the footer here */
   // height: 100px;
+}
+
+.icon{
+  width: 50px;
+  height: auto;
 }
