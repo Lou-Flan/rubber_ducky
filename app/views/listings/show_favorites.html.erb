@@ -27,6 +27,7 @@
                 <%= link_to "remove from favorites", favorite_listing_path(listing, type: "unfavorite"), method: :put%>
             <% else %>
                 <%= link_to "show", listing_path(listing.id), class: "btn btn-outline-secondary" %>
+                <%= link_to "remove from favorites", favorite_listing_path(listing, type: "unfavorite"), method: :put, class: "btn btn-outline-secondary"%>
            <% end %>
         </div>
     </div>

@@ -51,7 +51,7 @@
 </div>
 </div>
 
-<div class="jumbotron bg-transparent jumbotron-fluid">
+<div class="jumbotron jumbotron-fluid bg-light">
   <div class="container">
     <h1 class="display-4 text-center">what the duck is this place?</h1>
     <p class="lead text-center text-secondary">Gone are the days of needing to beg, borrow or steal an experienced rubber duck for your debugging needs. Simply login, look for a duck with skills you need, purchase and wait kindly by the mailbox for your new wise quacker to arrive. If your debugging buddy can't quack the bug, send them packing and find another! </p>
@@ -59,7 +59,7 @@
 </div>
 
 
-<h1 class="display-6 text-center">current technologies</h1>
+<h1 class="display-6 text-center m-3">current technologies</h1>
 <div class="container">
 <div class="d-flex justify-content-around">
   <span><%= image_tag("languages/ruby.jpeg", {class: "rounded icon"}) %></span>
@@ -72,6 +72,7 @@
 
 
 <%# SHOWS THE FIVE MOST RECENT LISTING HERE %>
+<h1 class="display-6 text-center m-5">newest ducks</h1>
 <div class="row row-cols-1 row-cols-md-2">
       <% @listings.each do |listing| %>
         <div class="col mb-4">

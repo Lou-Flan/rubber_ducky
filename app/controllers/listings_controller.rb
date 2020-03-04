@@ -80,11 +80,11 @@ class ListingsController < ApplicationController
     type = params[:type]
     if type == "favorite"
       current_user.favorites << @listing
-      redirect_to listing_path, notice: 'You favorited #{@listing.name}'
+      redirect_to show_favorites_path, notice: 'You favorited #{@listing.name}'
 
     elsif type == "unfavorite"
       current_user.favorites.delete(@listing)
-      redirect_to listing_path, notice: 'Unfavorited #{@listing.name}'
+      redirect_to show_favorites_path, notice: 'Unfavorited #{@listing.name}'
 
     else
       # Type missing, nothing happens
