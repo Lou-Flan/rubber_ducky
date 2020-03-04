@@ -1,11 +1,15 @@
 <div class="container-fluid">
   <h1 class="hero-title text-center">find an experienced duck</h5>
 </div>
-<%# SEARCH BAR %>
-<%= form_tag listings_path, method: :get do %>
-  <%= text_field_tag :search, params[:search] %>
-  <%= submit_tag("search", name: nil) %>
-<% end %>
+
+<%= render "layouts/searchform"%>
+
+<div class="d-flex justify-content-around">
+<h4>Sort by:</h4>
+  <%= content_tag :th, sort_link(@search, :name) %>
+  <%= content_tag :th, sort_link(@search, :price) %>
+  <%= content_tag :th, sort_link(@search, :created_at) %>
+</div>
 
 <div class="row row-cols-1 row-cols-md-4">
   <% @listings.each do |listing| %>

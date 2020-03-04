@@ -6,6 +6,8 @@
       <span id="logo"><%= link_to "dev-duck-swap", root_path, class: "navbar-brand" %></span>
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
         <%# change the nav bar items based on whether the user is logged in and if they have listings/favourites %>
+           <%# SEARCH BAR %>
+           
             <% if current_user %>
           <li class="nav-item">
             <%= link_to "ducks", listings_path, class: "nav-link" %>

@@ -7,7 +7,8 @@ class ListingsController < ApplicationController
     # before_action :logged_in, only: [:index]
 
     def index
-        @listings = Listing.search(params[:search])
+        @search = Listing.ransack(params[:q])
+        @listings = @search.result.includes(experiences: [])
     end
 
     def show
