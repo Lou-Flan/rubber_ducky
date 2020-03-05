@@ -5,13 +5,12 @@ class ListingsController < ApplicationController
     before_action :experience
 
     def index
-        @search = Listing.ransack(params[:q])
+        @search = Listing.with_attached_picture.ransack(params[:q])
         @listings = @search.result.includes(experiences: []).paginate(page: params[:page], per_page: 16)
     end
 
     def show
-        @listing = Listing.purchased?(params[:id])
-            if @listing == true then redirect_to listings_path
+            if @listing.purchased then redirect_to listings_path
                 
           elsif current_user.id != @listing.user.id
             @payment_button = true
@@ -48,7 +47,7 @@ class ListingsController < ApplicationController
         @listing = current_user.listings.create(listing_params)
 
         if @listing.errors.any?
-            render "new"
+            render "new", error: "Please enter all fields"
         else
             redirect_to listings_path
         end
@@ -61,7 +60,7 @@ class ListingsController < ApplicationController
         if @listing.update(listing_params)
             redirect_to @listing
         else
-            render 'edit'
+            render "edit"
         end
     end
 
@@ -87,12 +86,12 @@ class ListingsController < ApplicationController
     end
 
     def show_favorites
-        @search = current_user.favorites.ransack(params[:q])
+        @search = current_user.favorites.with_attached_picture.ransack(params[:q])
         @listings = @search.result.includes(experiences: [])
     end
 
     def manage_listings
-        @search = current_user.listings.ransack(params[:q])
+        @search = current_user.listings.with_attached_picture.ransack(params[:q])
         @listings = @search.result.includes(experiences: [])
     end
 

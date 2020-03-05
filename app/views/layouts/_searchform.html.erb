@@ -6,10 +6,10 @@
   <%= f.search_field :name_or_description_cont, class: "form-control" %>
  
 <div class="d-flex justify-content-start">
-    <% Experience.all.each do |language| %>
+    <% Experience.all.each do |exp| %>
 <div class="custom-control ">
-        <%= check_box_tag "q[experiences_language_cont_any][]", language.language, false, class: "custom-checkbox" %>
-          <%= language.language %>
+        <%= check_box_tag "q[experiences_language_cont_any][]", exp.language, false, class: "custom-checkbox" %>
+          <%= exp.language %>
   </div>        
     <% end %>
 </div>

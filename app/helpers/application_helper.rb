@@ -56,5 +56,12 @@ module ApplicationHelper
           end
         end
 
+        def get_sold_active_listings_count(listings)
+            active = listings.where(purchased: false).count
+            sold = listings.where(purchased: true).count
+
+            return "Active ducks: #{active}   Sold ducks: #{sold}"
+        end
+
 end
 

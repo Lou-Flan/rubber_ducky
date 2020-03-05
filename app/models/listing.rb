@@ -1,4 +1,8 @@
 class Listing < ApplicationRecord
+    validates :name, :description, :price, presence: true
+    validates :price, numericality: { only_integer: true }
+    validates :description, length: { maximum: 1000, too_long: "1000 character limit, please shorten your description"}
+
     has_one_attached :picture
     belongs_to :user
 
@@ -37,20 +41,13 @@ class Listing < ApplicationRecord
         user && (user == self.user)
     end
 
-    def self.purchased?(listing)
-        if self.find(listing).purchased == true
-            @listing = true
-        else
-            @listing = self.find(listing)
-        end
-    end
+    # def self.purchased?(listing)
+    #     if self.find(listing).purchased == true
+    #         @listing = true
+    #     else
+    #         @listing = self.find(listing)
+    #     end
+    # end
 
-#     def self.payment_button?(listing, current_user)
-#         if self.find(listing).user_id != current_user
-#              true
-#         else
-#              false
-#     end
-# end
 
 end
