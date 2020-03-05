@@ -74,3 +74,6 @@ gem "devise", "~> 4.7"
 gem "stripe", "~> 5.17"
 
 gem "ransack", "~> 2.3"
+
+gem 'will_paginate-bootstrap4'
+gem "will_paginate", "~> 3.3"

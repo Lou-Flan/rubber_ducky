@@ -6,7 +6,7 @@ class ListingsController < ApplicationController
 
     def index
         @search = Listing.ransack(params[:q])
-        @listings = @search.result.includes(experiences: [])
+        @listings = @search.result.includes(experiences: []).paginate(page: params[:page], per_page: 16)
     end
 
     def show
@@ -117,7 +117,7 @@ class ListingsController < ApplicationController
     end
 
     def listing_params
-        params.require(:listing).permit(:listing_id, :search, :name, :description, :price, :picture, experience_ids: [])
+        params.require(:listing).permit(:page, :listing_id, :search, :name, :description, :price, :picture, experience_ids: [])
     end
 
 end
