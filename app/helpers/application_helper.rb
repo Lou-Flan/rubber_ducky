@@ -10,9 +10,9 @@ module ApplicationHelper
 
     def show_avatar(listing)
         if listing.user.avatar.attached?
-            return image_tag(listing.user.avatar, {class: "card-img-top"})
+            return image_tag(listing.user.avatar, {class: "avatar"})
         else
-            return image_tag("default-user-01.png", {class: "card-img-top"})
+            return image_tag("default-user-01.png", {class: "avatar"})
         end
     end
 

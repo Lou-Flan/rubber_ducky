@@ -16,14 +16,20 @@ for i in 1..5
 end
 
 for i in 1..30
+    name = Faker::DcComics.hero
     Listing.create(
-        name: Faker::DcComics.hero,
+        name: name,
         description: Faker::Lorem.paragraph(sentence_count: rand(2..5)),
         price: Faker::Number.between(from: 1, to: 20), 
-        user_id: Faker::Number.between(from: 1, to: 2)
+        user_id: Faker::Number.between(from: 1, to: 5)
         )
     puts "Created #{i} listings"
+
+        puts name
 end
+
+
+# puts Listing.all.name
 
 tech = ["ruby", "javascript", "shell", "python", "C#"]
 
