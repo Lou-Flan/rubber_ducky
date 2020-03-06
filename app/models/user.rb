@@ -22,4 +22,6 @@ class User < ApplicationRecord
 
   has_many :conversations, :foreign_key => :sender_id
 
+  has_many :orders, :foreign_key => :buyer_id
+
  end

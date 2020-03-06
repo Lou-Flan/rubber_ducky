@@ -19,13 +19,12 @@ class PaymentsController < ApplicationController
             listing = Listing.find(payment_intent.metadata.listing_id)
             listing.purchased = true
             listing.save
-            # favorite_listing.delete(listing_id)
-            # favorite_listing.save
-  
-            order = Order.new
-            order.user = buyer
-            order.listing = listing
-            order.save
+              # charges, data, receipt url
+              # puts payment_intent.id
+              # puts payment_intent.charges.data[0].receipt_url
+
+              order = Order.create(buyer: buyer, listing: listing, striperef: payment_intent.id, receipt: payment_intent.charges.data[0].receipt_url)
+              order.save
         when 'payment_method.attached'
             payment_method = event.data.object # contains a Stripe::PaymentMethod
             # Then define and call a method to handle the successful attachment of a PaymentMethod.
@@ -33,7 +32,7 @@ class PaymentsController < ApplicationController
         # ... handle other event types
         else
             # Unexpected event type
-            render :nothing => true, :status => :bad_request
+            head :no_content
             return
         end
   
