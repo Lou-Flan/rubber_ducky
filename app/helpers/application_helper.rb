@@ -63,5 +63,16 @@ module ApplicationHelper
             return "Active ducks: #{active}   Sold ducks: #{sold}"
         end
 
+        # def get_receipts(user)
+        #     if user.orders.exists?
+        #     # return user.orders.receipt
+        #         user.orders.each do |order|
+        #          link_to("view", order.receipt, {class: 'btn btn-warning'})
+        #         end
+        #     else
+        #     end
+        # end
+
 end
+
 

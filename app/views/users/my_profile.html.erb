@@ -1,15 +1,35 @@
-<h1><%= @user.username %></h1>
-<p>Bio: <%= @user.bio %></p>
+<div class="container d-flex flex-column flex-md-row px-2 my-2 my-md-5">
+  <div class="content col-12 col-md-7 col-lg-8 p-0 pr-md-3">
 
-<div class="container-fluid">
-  <h2 class="hero-title text-center m-5">Active Listings:
-  <%= @user.listings.count %>
-  </h2>
+    <div class="row">
+      <div class="col-12 p-3 bg-light">
+            <% if @user.avatar.attached? %>
+            <span>  <%= image_tag(@user.avatar, {class: "avatar"}) %> </span>
+            <% else %>
+            <span>  <%= image_tag("default-user-01.png", {class: "avatar"}) %> </span>
+            <% end %>
+          <span><h1><%= @user.username %></h1></span>
+          <p>Bio: <%= @user.bio %></p>
+            <%= link_to "edit profile", edit_user_path(current_user), class: 'btn btn-warning' %>
+      </div>        
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-4">
+        <div class="col-12 details">
+          <%= get_sold_active_listings_count(current_user.listings) %>
+        </div>
+      <% @user.orders.each do |order| %>
+      <div class="col-sm-4">
+        <div class="card border-light">
+          <%= show_picture(order.listing) %>
+          <div class="card-body">
+            <h5 class="card-title"><%= order.listing.name %></h5>
+              <%= link_to "view receipt", order.receipt, class: "btn btn-warning" %>
+          </div>
+        </div>
+      </div>
+        <% end %>
+    </div>
+
+  </div>
 </div>
-
-<% if @user.avatar.attached? %>
-  <%= image_tag(@user.avatar, {class: "card-img-top"}) %>
-<% else %>
-  <%= image_tag("default-user-01.png", {class: "card-img-top"}) %>
-<% end %>
-<%= link_to "edit profile", edit_user_path(current_user), class: 'btn btn-warning' %>
