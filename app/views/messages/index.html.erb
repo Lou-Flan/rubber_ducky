@@ -1,31 +1,67 @@
+<div class="container-fluid">
+  <h1 class="hero-title text-center m-5">Chat</h5>
+</div>
+
+<div class="container p-3">
+
 <% if @over_ten %>
  <%= link_to "Show Previous", "?m=all" %>
 <% end %>
 
-<div class="ui segment">
+<div class="container-msg">
  <% @messages.each do |message| %>
   <% if message.body %>
    <% user = User.find(message.user_id) %>
-   <div class="item">
-    <div class="content">
-     <div class="header"><strong><%= user.username %></strong></div>
-      <div class="list">
-       <div class="item">
-        <i class="right triangle icon"></i>
-         <%= message.body %>
+   <% if user != current_user %>
+    <div>
+        <div class="incoming_msg_img">
+          <% if user.avatar.attached? %>
+            <span>  <%= image_tag(user.avatar) %> </span>
+          <% else %>
+            <span>  <%= image_tag("default-user-01.png") %> </span>
+          <% end %>
+        </div>
+        <div class="received_msg">
+          <div class="received_withd_msg">
+            <p><strong><%= user.username %></strong></p>
+            <p><%= message.body %></p> <%# current user %>
+     
+     <% else %>
+
+        <div class="received_msg" id="right">
+          <div class="received_withd_msg">
+            <p><strong><%= user.username %></strong></p> <%# current user %>
+            <p><%= message.body %></p>
+          </div>
+        </div>
+                  <div class="incoming_msg_img">
+          <% if user.avatar.attached? %>
+            <span>  <%= image_tag(user.avatar) %> </span>
+          <% else %>
+            <span>  <%= image_tag("default-user-01.png") %> </span>
+          <% end %>
+          <% end %>
+        
+        </div>
       </div>
-    </div>
-   </div>
- </div>
+
+  <% end %>
  <% end %>
-<% end %>
+
+
+ <%= form_for [@conversation, @message], html: {class: "ui reply form"} do |f| %>
+  <div class="type_msg">
+    <div class="input_msg_write">
+      <%= f.text_area :body, class: "form-control" %>
+    </div>
+    <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
+    <div>
+      <%= f.submit "submit", class: "btn btn-success" %>
+    </div>
+  </div>
+    <% end %>
 </div>
-<%= form_for [@conversation, @message], html: {class: "ui reply form"} do |f| %>
- <div class="field">
-   <%= f.text_area :body, class: "form-control" %>
- </div>
- <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
- <div>
-   <%= f.submit "Add Reply", class: "ui blue labeled submit icon button" %>
- </div>
-<% end %>
+</div>
+
+</div>
+</div>

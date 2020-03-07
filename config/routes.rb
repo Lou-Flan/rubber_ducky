@@ -24,6 +24,9 @@ Rails.application.routes.draw do
   get "/payments/success", to: "payments#success"
   post "/payments/webhook", to: "payments#webhook"
 
-  get "/:path", to: "pages#not_found"
+  # get "/:path", to: "pages#not_found"
+  get '*path', to: 'pages#not_found', constraints: lambda { |req|
+  req.path.exclude? 'rails/active_storage'
+}
   
 end
