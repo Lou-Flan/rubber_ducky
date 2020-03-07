@@ -1,1 +1,15 @@
-<h1> Cong-quack-ulations!</h1>
+<div class="container-fluid">
+  <h1 class="hero-title text-center m-5">Cong-quack-ulations!</h5>
+</div>
+
+<div class="jumbotron jumbotron-fluid bg-light">
+  <div class="container">
+    <h1 class="display-4 text-center p-2">You purchased <%= @listing.name %></h1>
+        <div class="display-4 text-center p-2">
+            <%= link_to "view receipt", @order.receipt, target: "_blank", class: "btn btn-warning" %>
+        </div>
+    <p class="lead text-center text-secondary p-2"><%= show_picture(@listing) %></p>
+   </div>
+</div>
+
+

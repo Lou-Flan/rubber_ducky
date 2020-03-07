@@ -1,8 +1,5 @@
 class PaymentsController < ApplicationController
     skip_before_action :verify_authenticity_token, only: [:webhook]
-    
-    def success
-    end
   
     def webhook
       event = Stripe::Event.construct_from(
@@ -19,6 +16,7 @@ class PaymentsController < ApplicationController
             listing = Listing.find(payment_intent.metadata.listing_id)
             listing.purchased = true
             listing.save
+            
               # charges, data, receipt url
               # puts payment_intent.id
               # puts payment_intent.charges.data[0].receipt_url
@@ -35,9 +33,14 @@ class PaymentsController < ApplicationController
             head :no_content
             return
         end
-  
   # success, but don't need to send anything back to Stripe
       head :no_content
     # end 
   end
+
+  def success
+    @listing = current_user.orders.last.listing
+    @order = current_user.orders.last
+  end
+
 end

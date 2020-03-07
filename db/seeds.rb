@@ -16,7 +16,6 @@ for i in 1..5
 end
 
 for i in 1..30
-    name = Faker::DcComics.hero
     Listing.create(
         name: name,
         description: Faker::Lorem.paragraph(sentence_count: rand(2..5)),
@@ -24,8 +23,6 @@ for i in 1..30
         user_id: Faker::Number.between(from: 1, to: 5)
         )
     puts "Created #{i} listings"
-
-        puts name
 end
 
 

@@ -7,10 +7,10 @@ class Listing < ApplicationRecord
     has_one_attached :picture
     belongs_to :user
 
-    has_many :favorite_listings  
+    has_many :favorite_listings, dependent: :destroy
     has_many :favorited_by, through: :favorite_listings, source: :user
 
-    has_many :listings_experience
+    has_many :listings_experience, dependent: :destroy
     has_many :experiences, through: :listings_experience
 
     def button

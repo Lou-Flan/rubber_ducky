@@ -6,40 +6,40 @@
 	<div class="col-12 col-6 col-md-3 text-md-left text-center">
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item">
-				<a class="nav-link" href="#">All ducks</a>
+			<%= link_to "All ducks", listings_path, class: "nav-link" %>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="#">Your ducks</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#">Your favourites</a>
-			</li>
-		</ul>
-	</div>
-		<div class="col-12 col-6 col-md-3 text-md-left text-center">
-		<ul class="navbar-nav mr-auto">
-			<li class="nav-item active">
-				<a class="nav-link" href="#">Your profile<span class="sr-only">(current)</span></a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#">Edit profile</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#">Cancel account</a>
+				<%= link_to "Sell a duck", new_listing_path, class: "nav-link" %>
 			</li>
 		</ul>
 	</div>
 
+	<% if current_user %>
 		<div class="col-12 col-6 col-md-3 text-md-left text-center">
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item active">
-				<a class="nav-link" href="#">Twitter<span class="sr-only">(current)</span></a>
+				<%= link_to "#{current_user.username}'s profile", profile_path, class: "nav-link" %>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="#">Linkedin</a>
+				<%= link_to "#{current_user.username}'s favourites", show_favorites_path, class: "nav-link" %>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="#">Github</a>
+				<%= link_to "#{current_user.username}'s ducks", manage_listings_path, class: "nav-link" %>
+			</li>
+		</ul>
+	</div>
+	<% end %>
+
+		<div class="col-12 col-6 col-md-3 text-md-left text-center">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item active">
+				<a class="nav-link" href="https://twitter.com/FlangerHanger">Twitter</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="https://www.linkedin.com/in/louise-flanagan/">Linkedin</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="https://github.com/Lou-Flan">Github</a>
 			</li>
 		</ul>
 	</div>

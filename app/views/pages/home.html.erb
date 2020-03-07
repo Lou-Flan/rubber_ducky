@@ -1,13 +1,17 @@
-
+<%# Carousel to be displayed on screens > mobile, links will change depending if the user is logged in or not %>
 <div class=" hide-small">
   <div id="carousel" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner" role="listbox">
 
       <div class="carousel-item active">
         <div class="view"><%= image_tag("slider-01.png", {class: "d-block w-100"}) %>
-             <div class="carousel-button-left">
-             <a href="#" class="btn btn-secondary btn-lg">sign up »</a>
-             </div>
+        <div class="carousel-button-left">
+        <% if !current_user %>
+          <%= link_to "sign up »", new_user_registration_path, class: "btn btn-secondary btn-lg" %>
+        <% else %>
+          <%= link_to "find a duck »", listings_path, class: "btn btn-secondary btn-lg" %>
+          <% end %>
+      </div>
         </div>
         
     </div>
@@ -19,14 +23,19 @@
       </div>
 
         <div class="carousel-button-right">
-        <a href="#" class="btn btn-secondary btn-lg">sign up »</a>
+        <% if !current_user %>
+          <%= link_to "sign up »", new_user_registration_path, class: "btn btn-secondary btn-lg" %>
+        <% else %>
+          <%= link_to "sell a duck »", new_listing_path, class: "btn btn-secondary btn-lg" %>
+          <% end %>
       </div>
+
     </div>
-    </div>
+</div>
 
 </div>
 </div>
-
+<%# Carousel to be displayed on mobile, links will change depending if the user is logged in or not %>
 <div class="hide-large">
 <div id="carousel-small" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner" role="listbox">
@@ -34,7 +43,11 @@
       <div class="view"><%= image_tag("slider-03.png", {class: "d-block w-100"}) %></div>
 
         <div class="carousel-button-middle">
-        <a href="#" class="btn btn-secondary btn-lg">sign up »</a>
+        <% if !current_user %>
+          <%= link_to "sign up »", new_user_registration_path, class: "btn btn-secondary btn-lg" %>
+        <% else %>
+          <%= link_to "find a duck »", listings_path, class: "btn btn-secondary btn-lg" %>
+        <% end %>
         </div>
     </div>
     <div class="carousel-item">
@@ -42,7 +55,11 @@
       <div class="view"><%= image_tag("slider-04.png", {class: "d-block w-100"}) %></div>
      
         <div class="carousel-button-middle">
-        <a href="#" class="btn btn-secondary btn-lg">sign up »</a>
+        <% if !current_user %>
+          <%= link_to "sign up »", new_user_registration_path, class: "btn btn-secondary btn-lg" %>
+        <% else %>
+          <%= link_to "sell a duck »", listings_path, class: "btn btn-secondary btn-lg" %>
+          <% end %>
       </div>
 
     </div>
@@ -53,8 +70,8 @@
 
 <div class="jumbotron jumbotron-fluid bg-light">
   <div class="container">
-    <h1 class="display-4 text-center">what the duck is this place?</h1>
-    <p class="lead text-center text-secondary">Gone are the days of needing to beg, borrow or steal an experienced rubber duck for your debugging needs. Simply login, look for a duck with skills you need, purchase and wait kindly by the mailbox for your new wise quacker to arrive. If your debugging buddy can't quack the bug, send them packing and find another! </p>
+    <h1 class="display-4 text-center p-2">what the duck is this place?</h1>
+    <p class="lead text-center text-secondary p-2">Gone are the days of needing to beg, borrow or steal an experienced rubber duck for your debugging needs. Simply login, look for a duck with skills you need, purchase and wait kindly by the mailbox for your new wise quacker to arrive. If your debugging buddy can't quack the bug, send them packing and find another! </p>
   </div>
 </div>
 
