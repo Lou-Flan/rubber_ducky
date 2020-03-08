@@ -34,7 +34,10 @@ private
   def sanitize_user_inputs
     self.username = username.downcase
     # gsub not used on username to stop blank usernames reaching database
-    self.bio.gsub!(/[^0-9A-Za-z ,.'!"]/, '')
+    if self.bio != nil
+      self.bio.gsub!(/[^0-9A-Za-z ,.'!"]/, '')
+    else
+    end
   end
 
  end
