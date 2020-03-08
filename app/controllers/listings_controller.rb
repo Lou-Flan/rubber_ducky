@@ -4,14 +4,17 @@ class ListingsController < ApplicationController
     before_action :set_user_listing, only: [:edit, :update, :destroy]
     before_action :experience
 
+#-----------------------------------------------------------------------
+# ransack used to search 
+#-----------------------------------------------------------------------  
+
     def index
         @search = Listing.with_attached_picture.ransack(params[:q])
         @listings = @search.result.includes(experiences: []).paginate(page: params[:page], per_page: 16)
     end
 
     def show
-            if @listing.purchased then redirect_to listings_path
-                
+        if @listing.purchased then redirect_to listings_path
           elsif current_user.id != @listing.user.id
             @payment_button = true
         session = Stripe::Checkout::Session.create(
@@ -45,7 +48,7 @@ class ListingsController < ApplicationController
 
     def create
         @listing = current_user.listings.create(listing_params)
-
+        
         if @listing.errors.any?
             render "new", error: "Please enter all fields"
         else

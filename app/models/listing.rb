@@ -1,6 +1,6 @@
 class Listing < ApplicationRecord
     validates_presence_of :name, :description, :price
-    validates :name, format: { with: /^[a-zA-Z0-9_\.]*$/, :multiline => true, message: "Only alpha-numeric characters and _" }
+    validates :name, format: { with: /^[a-zA-Z0-9]*$/, :multiline => true, message: "should only contain alpha-numeric characters" }
     validates :price, numericality: { only_integer: true }
     validates :description, length: { maximum: 1000, too_long: "1000 character limit, please shorten your description"}
 
@@ -13,27 +13,14 @@ class Listing < ApplicationRecord
     has_many :listings_experience, dependent: :destroy
     has_many :experiences, through: :listings_experience
 
-    def button
-        if current_user.id != @listing.user.id
-            @show_button = true
-        elsif current_user.id == nil
-            @show_button = false
-        else
-            
-        end 
-    end
+    before_validation :sanitize_inputs, on: [:new, :create, :update, :edit]
 
-    # method to use search bar, if no search params are present, all listings will be returned
-    # the search will look for close matches in listing name or description
-    # BEFORE RANSACK IMPLEMENTED
-    # def self.search(search)
-    #         if search != "" && search != nil
-    #             return self.where("name || description ILIKE ?", "%#{search}%")
-    #         else
-    #             return self.all.order('id desc')
-    #         end
-    # end
-
+#-----------------------------------------------------------------------
+# works with the delete & edit methods in application_helper. 
+# the current user is parsed in, the method checks if the current user id
+# matches the current listing user then returns a boolean value which
+# determines whether to show the edit/delete buttons
+#-----------------------------------------------------------------------
     def editable_by?(user)
         user && (user == self.user)
     end
@@ -42,13 +29,17 @@ class Listing < ApplicationRecord
         user && (user == self.user)
     end
 
-    # def self.purchased?(listing)
-    #     if self.find(listing).purchased == true
-    #         @listing = true
-    #     else
-    #         @listing = self.find(listing)
-    #     end
-    # end
+    private
 
+#-----------------------------------------------------------------------
+# method is used before validation to only allow specified characters 
+# within user input. the method removes any illegal characters before 
+# the data is saved to the database. the sanitize ruby helper is also 
+# used in the listing views.
+#-----------------------------------------------------------------------  
+    def sanitize_inputs
+        self.name = name.downcase
+        (self.name && self.description).gsub!(/[^0-9A-Za-z ,.'"]/, '')
+    end
 
 end

@@ -17,13 +17,13 @@
     <div class="row">
         <div class="col"><%= show_picture(listing) %></div>
         <div class="col-6">
-            <h1><%= listing.name %></h1>
+            <h1><%= sanitize listing.name %></h1>
             <p><%= listing.price %></p>
-            <p><%= listing.description %></p>
+            <p><%= sanitize listing.description %></p>
         </div>
         <div class="col">
             <% if listing.purchased == true %>
-                <p> no longer available</p>
+                <p> no longer available </p>
                 <%= link_to "remove from favorites", favorite_listing_path(listing, type: "unfavorite"), method: :put%>
             <% else %>
                 <%= link_to "show", listing_path(listing.id), class: "btn btn-outline-secondary" %>

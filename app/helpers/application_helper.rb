@@ -1,5 +1,8 @@
 module ApplicationHelper
-
+#-----------------------------------------------------------------------
+# the current listing is parsed in and checked for an attached or
+# default picture to display
+#-----------------------------------------------------------------------  
     def show_picture(listing)
         if listing.picture.attached?
             return image_tag(listing.picture, {class: 'thumbnail'})
@@ -8,6 +11,10 @@ module ApplicationHelper
         end
     end 
 
+#-----------------------------------------------------------------------
+# the current user is parsed in and checked for an attached or
+# default avatar to display
+#-----------------------------------------------------------------------  
     def show_avatar(listing)
         if listing.user.avatar.attached?
             return image_tag(listing.user.avatar, {class: "avatar"})
@@ -16,6 +23,15 @@ module ApplicationHelper
         end
     end
 
+#-----------------------------------------------------------------------
+# the current listing is parsed in, a current_user has to be logged in
+# in order for the favourite/unfavourite buttons to show. unless condition
+# checks whether the current listing is in the current users favourites
+# and displays an empty heart to click and favourite. if the user has favourited
+# then a full heart is displayed. two conditionals refer to favorite method in
+# listings controller which adds and removes a favourite row from the favourites
+# table.
+#-----------------------------------------------------------------------  
     def favourites(listing)
         if current_user
             unless current_user.favorite_ids.include? listing.id
@@ -27,7 +43,10 @@ module ApplicationHelper
         end
     end
 
-    # when method is called, the listing is parsed in then the editable_by? method is called from the model and the current user id is parsed to it
+#-----------------------------------------------------------------------
+# method is working with editable_by? model method to determine whether the
+# current listing belongs to the current user and whether to show the edit button
+#-----------------------------------------------------------------------  
     def edit(listing)        
         if listing.editable_by?(current_user)
             link_to "edit", edit_listing_path(listing.id), class: "btn btn-primary middle" 
@@ -36,7 +55,11 @@ module ApplicationHelper
         end
     end
 
-# when method is called, the listing is parsed in then the deletable_by? method is called from the model and the current user id is parsed to it
+
+#-----------------------------------------------------------------------
+# method is working with deletable_by? model method to determine whether the
+# current listing belongs to the current user and whether to show the delete button
+#-----------------------------------------------------------------------  
     def delete(listing)        
         if listing.deletable_by?(current_user)
             link_to "delete", listing_path(listing),method: :delete,
@@ -46,7 +69,9 @@ module ApplicationHelper
         end
     end
 
-# displays different bootstrap styling depending on the notice level
+#-----------------------------------------------------------------------
+# displays different bootstrao styling based on the flash level
+#-----------------------------------------------------------------------  
         def flash_class(level)
           case level
             when 'notice' then "alert alert-info"
@@ -56,22 +81,16 @@ module ApplicationHelper
           end
         end
 
+#-----------------------------------------------------------------------
+# current users listings are parsed in, the method counts and returns
+# the number of each true and false value in the listings purchased column
+#-----------------------------------------------------------------------  
         def get_sold_active_listings_count(listings)
             active = listings.where(purchased: false).count
             sold = listings.where(purchased: true).count
 
             return "Active ducks: #{active}   Sold ducks: #{sold}"
         end
-
-        # def get_receipts(user)
-        #     if user.orders.exists?
-        #     # return user.orders.receipt
-        #         user.orders.each do |order|
-        #          link_to("view", order.receipt, {class: 'btn btn-warning'})
-        #         end
-        #     else
-        #     end
-        # end
 
 end
 
