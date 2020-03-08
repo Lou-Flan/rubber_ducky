@@ -13,7 +13,7 @@ class Listing < ApplicationRecord
     has_many :listings_experience, dependent: :destroy
     has_many :experiences, through: :listings_experience
 
-    before_validation :sanitize_inputs, on: [:new, :create, :update, :edit]
+    before_validation :sanitize_listing_inputs, on: [:new, :create, :update, :edit]
 
 #-----------------------------------------------------------------------
 # works with the delete & edit methods in application_helper. 
@@ -37,7 +37,7 @@ class Listing < ApplicationRecord
 # the data is saved to the database. the sanitize ruby helper is also 
 # used in the listing views.
 #-----------------------------------------------------------------------  
-    def sanitize_inputs
+    def sanitize_listing_inputs
         self.name = name.downcase
         (self.name && self.description).gsub!(/[^0-9A-Za-z ,.'"]/, '')
     end

@@ -8,6 +8,8 @@ class User < ApplicationRecord
          validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
          validate :validate_username
 
+         before_validation :sanitize_user_inputs
+
          def validate_username
           if User.where(email: username).exists?
             errors.add(:username, :invalid)
@@ -23,5 +25,16 @@ class User < ApplicationRecord
   has_many :conversations, :foreign_key => :sender_id
 
   has_many :orders, :foreign_key => :buyer_id
+
+#-----------------------------------------------------------------------
+# method is used before validation to only allow specified characters 
+# for user input within user model and downcase username
+#----------------------------------------------------------------------- 
+private
+  def sanitize_user_inputs
+    self.username = username.downcase
+    # gsub not used on username to stop blank usernames reaching database
+    self.bio.gsub!(/[^0-9A-Za-z ,.'!"]/, '')
+  end
 
  end

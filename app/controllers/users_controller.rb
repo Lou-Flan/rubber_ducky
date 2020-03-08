@@ -11,8 +11,7 @@ class UsersController < ApplicationController
         if @user.update(profile_params)
             redirect_to @user
         else
-         render "edit"
-        #  FIX ME ADD ERROR MESSAGING  
+         render "edit", error: "Please try again"
         end
     end
 
