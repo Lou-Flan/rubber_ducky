@@ -4,33 +4,10 @@
 
 <%= render "layouts/searchform"%>
 
-
-
 <div class="row row-cols-1 row-cols-md-4">
-  <% @listings.each do |listing| %>
-    <% if !listing.purchased %>
-      <div class="col-sm-4">
-        <div class="card border-light">
-        <%# SHOW PHOTO METHOD IN APPLICATION HELPER %>
-          <div class="thumbnail"><%= show_picture(listing) %></div>
-          <div class="card-body">
-            <h5 class="card-title"><%= listing.name %>
-              <%# FAVOURITES METHOD IN APPLICATION HELPER %>
-              <%= favourites(listing) %>
-            </h5>
-            <p class="card-text text-secondary" id="truncate"><%= listing.description %></p>
-            <div class="card-title col-12 d-flex justify-content-end">
-              <%= "$#{listing.price}" %>
-            </div>
-            <div class= "d-inline">
-              <%= link_to "show", listing_path(listing.id) %>
-            </div>
-          </div>
-        </div>
-      </div>
-  <% end %>
-  <% end %>
+  <%= render "listings/display_listings"%>
 </div>
+
 <div class="container">
 <span class="d-block">
     <%= will_paginate @listings, list_classes: %w(pagination justify-content-end) %>

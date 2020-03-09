@@ -2,50 +2,41 @@
   <h1 class="hero-title text-center m-5">get your ducks in a row</h5>
 </div>
 
-<div class="container p-3">
-
-<div class="container-fluid">
-  <h2 class="hero-title text-center">
-    <%= get_sold_active_listings_count(@listings) %>
-  </h2>
-</div>
-
-<div class="d-flex justify-content-around bg-light p-3"> 
-<h5>Sort your ducks by:</h5>
-  <%= content_tag :th, sort_link(@search, :name) %>
-  <%= content_tag :th, sort_link(@search, :price) %>
-  <%= content_tag :th, sort_link(@search, :created_at) %>
-  <%= content_tag :th, sort_link(@search, :updated_at) %>
-  <%= content_tag :th, sort_link(@search, :purchased) %>
-
-</div>
 
 
+  <div class="container-fluid">
+    <h2 class="hero-title text-center"><%= get_sold_active_listings_count(@listings) %></h2>
+  </div>
 
+  <div class="d-flex justify-content-around bg-light p-3"> 
+    <h5>Sort your ducks by:</h5>
+      <%= content_tag :th, sort_link(@search, :name) %>
+      <%= content_tag :th, sort_link(@search, :price) %>
+      <%= content_tag :th, sort_link(@search, :created_at) %>
+      <%= content_tag :th, sort_link(@search, :updated_at) %>
+      <%= content_tag :th, sort_link(@search, :purchased) %>
+  </div>
+
+<div class="row row-cols-1 row-cols-md-4">
   <% @listings.each do |listing| %>
-
-    <div class="row">
-        <div class="col"><%= show_picture(listing) %></div>
-        <div class="col-6">
-            <h1><%= listing.name %></h1>
-            <p><%= listing.price %></p>
-            <p><%= listing.description %></p>
-
-          <% if listing.purchased %> 
-            <div class="bg-warning text-center">
-            <p> SOLD </p>
-            </div>
-            <%= delete(listing) %>
+        <div class="card border-light">
+          <div class="thumbnail"><%= show_picture(listing) %></div>
+          <div class="card-body">
+          <h5><%= listing.name %></h5>
+            <% if listing.purchased %> 
+              <div class="d-flex justify-content-between">
+                <div class="bg-warning text-center"><p> SOLD </p>
+                </div>
+                <%= delete(listing) %>
+              </div>
+            <% else %>
+                <p>Number of favourites: <%= get_number_of_favourites(listing) %></p>
+                  <div class= "d-flex justify-content-between">
+                    <%= link_to "show", listing_path(listing.id), class: "show-button" %><h5><%= "$#{listing.price}" %></h5>
+                  </div>
+          </div>
         </div>
-        <% else %>
-        <div class="col">
-            <%= link_to "show", listing_path(listing.id), class: "btn btn-outline-secondary" %>
-            <%= edit(listing) %><%= delete(listing) %>
-        
-        </div>
-    </div>
-    
-</div>
-</div>
-<% end %>
-<% end %>
+    <% end %>
+    <% end %>
+  </div>
+

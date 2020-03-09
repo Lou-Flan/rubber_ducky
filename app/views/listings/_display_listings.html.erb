@@ -1,0 +1,24 @@
+
+  <% @listings.each do |listing| %>
+    <% if !listing.purchased %>
+      <div class="col-sm-4">
+        <div class="card border-light">
+        <%# SHOW PHOTO METHOD IN APPLICATION HELPER %>
+          <div class="thumbnail"><%= show_picture(listing) %></div>
+          <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <h5><%= listing.name %></h5>
+              <%# FAVOURITES METHOD IN APPLICATION HELPER %>
+              <%= favourites(listing) %>
+            
+            </div>
+            <p class="card-text text-secondary" id="truncate"><%= listing.description %></p>
+            <div class= "d-flex justify-content-between">
+              <%= link_to "show", listing_path(listing.id), class: "show-button" %>
+              <h5><%= "$#{listing.price}" %></h5>
+            </div>
+          </div>
+        </div>
+      </div>
+  <% end %>
+  <% end %>

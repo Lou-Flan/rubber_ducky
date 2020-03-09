@@ -2,108 +2,78 @@
 <div class=" hide-small">
   <div id="carousel" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner" role="listbox">
-
       <div class="carousel-item active">
         <div class="view"><%= image_tag("slider-01.png", {class: "d-block w-100"}) %>
-        <div class="carousel-button-left">
-        <% if !current_user %>
-          <%= link_to "sign up »", new_user_registration_path, class: "btn btn-secondary btn-lg" %>
-        <% else %>
-          <%= link_to "find a duck »", listings_path, class: "btn btn-secondary btn-lg" %>
-          <% end %>
-      </div>
+          <div class="carousel-button-left">
+            <% if !current_user %>
+              <%= link_to "sign up »", new_user_registration_path, class: "btn btn-secondary btn-lg" %>
+            <% else %>
+              <%= link_to "find a duck »", listings_path, class: "btn btn-secondary btn-lg" %>
+            <% end %>
+          </div>
         </div>
-        
-    </div>
-    <div class="carousel-item">
-
-      <div class="view">
-      <%= image_tag("slider-02.png", {class: "d-block w-100"}) %>
-        <div class="mask rgba-black-strong"></div>
       </div>
-
+      <div class="carousel-item">
+        <div class="view">
+          <%= image_tag("slider-02.png", {class: "d-block w-100"}) %>
+          <div class="mask rgba-black-strong"></div>
+        </div>
         <div class="carousel-button-right">
-        <% if !current_user %>
-          <%= link_to "sign up »", new_user_registration_path, class: "btn btn-secondary btn-lg" %>
-        <% else %>
-          <%= link_to "sell a duck »", new_listing_path, class: "btn btn-secondary btn-lg" %>
+          <% if !current_user %>
+            <%= link_to "sign up »", new_user_registration_path, class: "btn btn-secondary btn-lg" %>
+          <% else %>
+            <%= link_to "sell a duck »", new_listing_path, class: "btn btn-secondary btn-lg" %>
           <% end %>
+        </div>
       </div>
-
     </div>
-</div>
-
-</div>
+  </div>
 </div>
 <%# Carousel to be displayed on mobile, links will change depending if the user is logged in or not %>
 <div class="hide-large">
-<div id="carousel-small" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner" role="listbox">
-    <div class="carousel-item active">
-      <div class="view"><%= image_tag("slider-03.png", {class: "d-block w-100"}) %></div>
-
+  <div id="carousel-small" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner" role="listbox">
+      <div class="carousel-item active">
+        <div class="view"><%= image_tag("slider-03.png", {class: "d-block w-100"}) %></div>
         <div class="carousel-button-middle">
-        <% if !current_user %>
-          <%= link_to "sign up »", new_user_registration_path, class: "btn btn-secondary btn-lg" %>
-        <% else %>
-          <%= link_to "find a duck »", listings_path, class: "btn btn-secondary btn-lg" %>
-        <% end %>
-        </div>
-    </div>
-    <div class="carousel-item">
-
-      <div class="view"><%= image_tag("slider-04.png", {class: "d-block w-100"}) %></div>
-     
-        <div class="carousel-button-middle">
-        <% if !current_user %>
-          <%= link_to "sign up »", new_user_registration_path, class: "btn btn-secondary btn-lg" %>
-        <% else %>
-          <%= link_to "sell a duck »", listings_path, class: "btn btn-secondary btn-lg" %>
+          <% if !current_user %>
+            <%= link_to "sign up »", new_user_registration_path, class: "btn btn-secondary btn-lg" %>
+          <% else %>
+            <%= link_to "find a duck »", listings_path, class: "btn btn-secondary btn-lg" %>
           <% end %>
+        </div>
       </div>
-
+      <div class="carousel-item">
+        <div class="view"><%= image_tag("slider-04.png", {class: "d-block w-100"}) %></div>
+        <div class="carousel-button-middle">
+          <% if !current_user %>
+            <%= link_to "sign up »", new_user_registration_path, class: "btn btn-secondary btn-lg" %>
+          <% else %>
+            <%= link_to "sell a duck »", listings_path, class: "btn btn-secondary btn-lg" %>
+          <% end %>
+        </div>
+      </div>
     </div>
-
+  </div>
 </div>
-</div>
-</div>
-
 <div class="jumbotron jumbotron-fluid bg-light">
   <div class="container">
     <h1 class="display-4 text-center p-2">what the duck is this place?</h1>
     <p class="lead text-center text-secondary p-2">Gone are the days of needing to beg, borrow or steal an experienced rubber duck for your debugging needs. Simply login, look for a duck with skills you need, purchase and wait kindly by the mailbox for your new wise quacker to arrive. If your debugging buddy can't quack the bug, send them packing and find another! </p>
   </div>
 </div>
-
-
 <h1 class="display-6 text-center m-3">current technologies</h1>
 <div class="container">
-<div class="d-flex justify-content-around">
-  <span><%= image_tag("ruby.jpeg", {class: "rounded icon"}) %></span>
-  <span><%= image_tag("Csharp.png", {class: "rounded icon"})%></span>
-  <span><%= image_tag("python.jpeg", {class: "rounded icon"}) %></span>
-  <span><%= image_tag("javascript.png", {class: "rounded icon"}) %></span>
-  <span><%= image_tag("shell.png", {class: "rounded icon"}) %></span>
+  <div class="d-flex justify-content-around">
+    <span><%= image_tag("ruby.jpeg", {class: "rounded icon"}) %></span>
+    <span><%= image_tag("Csharp.png", {class: "rounded icon"})%></span>
+    <span><%= image_tag("python.jpeg", {class: "rounded icon"}) %></span>
+    <span><%= image_tag("javascript.png", {class: "rounded icon"}) %></span>
+    <span><%= image_tag("shell.png", {class: "rounded icon"}) %></span>
+  </div>
 </div>
-</div>
-
-
 <%# SHOWS THE FIVE MOST RECENT LISTING HERE %>
 <h1 class="display-6 text-center m-5">newest ducks</h1>
-<div class="row row-cols-1 row-cols-md-2">
-      <% @listings.each do |listing| %>
-        <div class="col mb-4">
-        <div class="card border-light">
-          <%= show_picture(listing) %>
-
-          <div class="card-body">
-            <h5 class="card-title"><%= listing.name %></h5>
-            <p class="card-text" id="truncate"><%= listing.description %></p>
-            <p class="card-title"><%= listing.price %></p>
-                <%= link_to "show", listing_path(listing.id), class: "btn btn-outline-secondary" %>
-          </div>
-          </div>
-        </div>
-      <% end %>
-
+<div class="row row-cols-1 row-cols-md-5">
+<%= render "listings/display_listings"%>
 </div>

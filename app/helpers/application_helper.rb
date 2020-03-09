@@ -43,6 +43,14 @@ module ApplicationHelper
         end
     end
 
+    def get_number_of_favourites(listing)
+        number = listing.favorite_listings.count
+        if number == nil
+            number =  0
+        end
+        return number
+    end
+
 #-----------------------------------------------------------------------
 # method is working with editable_by? model method to determine whether the
 # current listing belongs to the current user and whether to show the edit button

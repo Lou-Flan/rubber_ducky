@@ -231,3 +231,21 @@ p {
   }
 
 }
+
+.show-button {
+  font-family: $heading-font;
+  width: 50%;
+  border-radius: 25px;
+  border: 2px solid black;
+  text-align: center;
+  background-color: black;
+  color: white;
+
+}
+
+.show-button:hover{
+  color: black;
+  background-color: white;
+  border: 2px solid black;
+  text-decoration: none;
+}
