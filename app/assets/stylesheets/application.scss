@@ -21,7 +21,7 @@ $logo-font: "Fredoka One", sans-serif;
 $heading-font: "Source Sans Pro", sans-serif;
 $body-font: "Noto Serif KR";
 
-h1 {
+h1, h2, h3, h4, h5 {
   font-family: $logo-font;
 }
 
@@ -47,26 +47,8 @@ p {
     max-width: 1140px;
   }
 
-  // @media screen and (min-width: 992px){
-  //   max-width: 960px;
-  // }
-
-  // @media screen and (min-width: 768px){
-  //     max-width: 720px;
-  //   }
-
-
-  // @media screen and (min-width: 576px){
-  //   max-width: 540px;
-  //  }
 }
 
-// #carousel{
-//   display: block;
-
-//   @media screen and (min-width: 980px){
-//     display: none;
-//   }
 
 
 @media screen and (max-width: 629px){
@@ -177,8 +159,15 @@ p {
 }
 
 .thumbnail{
+  width: auto;
+  // height: 50%;
+  object-fit: cover;
+}
+
+.listing-display{
   width: 100%;
-  height: auto;
+  // height: 50%;
+  object-fit: cover;
 }
 
 .avatar{
@@ -204,4 +193,41 @@ p {
 .icon{
   width: 50px;
   height: auto;
+}
+.icon-sm{
+  width: 30px;
+  height: 30px;
+}
+
+.price-container{
+  border-radius: 25px;
+  border: 2px solid rgba(33, 173, 136, 0.2);
+  background-color:  rgba(33, 173, 136, 0.2);
+}
+
+.about-container{
+  border-radius: 25px;
+  border: 2px solid rgba(228, 228, 228, 0.5);
+}
+
+.buy-button {
+  border-radius: 25px;
+  border: 2px solid rgba(33, 173, 136, 0.2);
+  font-family: $heading-font;
+  width: 100%;
+  height: 70px;
+}
+
+.buy-button:hover {
+  background-image: url("purchase.gif");
+  background-position: center;
+  height: 70px;
+  background-color: pink;
+  background-size: repeat;
+  background-size: cover;
+
+  h4 {
+    color: white;
+  }
+
 }

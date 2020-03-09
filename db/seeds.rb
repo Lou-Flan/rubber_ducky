@@ -17,7 +17,7 @@ end
 
 for i in 1..30
     Listing.create(
-        name: name,
+        name: "duck#{i}",
         description: Faker::Lorem.paragraph(sentence_count: rand(2..5)),
         price: Faker::Number.between(from: 1, to: 20), 
         user_id: Faker::Number.between(from: 1, to: 5)

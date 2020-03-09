@@ -1,26 +1,24 @@
 <div class="container d-flex flex-column flex-md-row px-2 my-2 my-md-5">
   <div class="content col-12 col-md-7 col-lg-8 p-0 pr-md-3">
 
-    <div class="col-12 details">
-      <h1><%= @listing.name %></h1>
-      <p><%= @listing.description %></p>
-      <%# FAVOURITES METHOD IN APPLICATION HELPER %>
-      <%= favourites(@listing) %>
-    </div>
-
-    <div class="col-12 p-0 main-preview mb-4 border">
+    <div class="col-12 p-0 main-preview mb-4">
       <%= show_picture(@listing) %>
     </div>
 
   </div>
 
-  <div class="sidebar col-5 col-lg-4 p-0 mx-2 d-md-block">
-    <div class="col-12 p-3 bg-light">
-      <h1><%= " $ #{@listing.price}" %></h1>
-    <%= edit(@listing) %><%= delete(@listing) %>
-      <% if @payment_button %>
-        <button class="btn btn-secondary btn-lg" data-stripe="payment">Buy now</button>
-      <% end %>
+  <div class="sidebar col-lg-4 p-0 mx-2 d-md-block">
+    <div class="col-12 p-3 price-container">
+      <div class="d-flex justify-content-between">
+      <h1><%= favourites(@listing) %></h1> 
+      <h1><%= "$ #{@listing.price}" %></h1> 
+      </div>
+    </div>
+    <div class="col p-3">
+        <% if @payment_button %>
+        <div class="mt-3 mb-3">
+          <button class="buy-button p-3" data-stripe="payment"><h4>Buy now</h4></button>
+        <% end %>
       <script src="https://js.stripe.com/v3/"></script>
       <script>
         document
@@ -36,17 +34,41 @@
           });
       </script>
     </div>
-
-    <div>Seller: <%= @listing.user.username %>
-<%# USER AVATAR HELPER %>
-    <%= show_avatar(@listing) %>
-    </div>
-    <div>Experience: <% @listing.experiences.each do |lang| %>
-        <%= lang.language %>
-      <% end %>
-    </div>
-    <% if @listing.user.id != current_user.id %>
-      <%= link_to "Message #{@listing.user.username}", conversations_path(sender_id: current_user.id, recipient_id: @listing.user.id), method: "post" %>
-    <% end %>
-  </div>
-</div>
+ 
+    <div class="col-12 p-3 about-container">
+    
+      <div class="mt-3">
+      <h1><%= @listing.name %></h1>
+      <div class="border-top mt-4 mb-4">
+      </div>
+      </div>
+      <h3>Experience:</h3>
+        <div class="d-flex justify-content-between p3 mt-3">
+          <% @listing.experience_ids.each do |exp| %>
+            <%= display_language_icons(exp) %>
+          <% end %>
+        </div>
+        <div class="border-top mt-4">
+          <div class="mt-3">
+            <h3>Description:</h3>
+              <p><%= @listing.description %></p>
+          </div>
+        </div>
+        <div class="border-top mt-4">
+          <div class="mt-3">
+            <h3>Seller:</h3>
+              
+              <h5> <%= show_avatar(@listing) %><%= @listing.user.username %></h5>
+          </div>
+        </div>
+              <% if @listing.user.id != current_user.id %>
+                <%= link_to "Message #{@listing.user.username}", conversations_path(sender_id: current_user.id, recipient_id: @listing.user.id), method: "post" %>
+              <% end %>
+                      <%= edit(@listing) %>
+          <%= delete(@listing) %>
+          </div>
+        </div>
+        </div>
+        </div>
+ </div>
+ </div>

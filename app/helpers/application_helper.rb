@@ -17,9 +17,9 @@ module ApplicationHelper
 #-----------------------------------------------------------------------  
     def show_avatar(listing)
         if listing.user.avatar.attached?
-            return image_tag(listing.user.avatar, {class: "avatar"})
+            return image_tag(listing.user.avatar, {class: "icon"})
         else
-            return image_tag("default-user-01.png", {class: "avatar"})
+            return image_tag("user.png", {class: "icon"})
         end
     end
 
@@ -72,26 +72,39 @@ module ApplicationHelper
 #-----------------------------------------------------------------------
 # displays different bootstrao styling based on the flash level
 #-----------------------------------------------------------------------  
-        def flash_class(level)
-          case level
-            when 'notice' then "alert alert-info"
-            when 'success' then "alert alert-success"
-            when 'error' then "alert alert-danger"
-            when 'alert' then "alert alert-warning"
-          end
-        end
+    def flash_class(level)
+    case level
+        when 'notice' then "alert alert-info"
+        when 'success' then "alert alert-success"
+        when 'error' then "alert alert-danger"
+        when 'alert' then "alert alert-warning"
+    end
+    end
 
 #-----------------------------------------------------------------------
 # current users listings are parsed in, the method counts and returns
 # the number of each true and false value in the listings purchased column
 #-----------------------------------------------------------------------  
-        def get_sold_active_listings_count(listings)
-            active = listings.where(purchased: false).count
-            sold = listings.where(purchased: true).count
+    def get_sold_active_listings_count(listings)
+        active = listings.where(purchased: false).count
+        sold = listings.where(purchased: true).count
 
-            return "Active ducks: #{active}   Sold ducks: #{sold}"
+        return "Active ducks: #{active}   Sold ducks: #{sold}"
+    end
+
+#-----------------------------------------------------------------------
+# displays icons instead of a list of experiences by checking the 
+# experience id
+#-----------------------------------------------------------------------  
+    def display_language_icons(listing)
+        case listing
+        when 1 then image_tag("ruby.jpeg", {class: "icon-sm"})
+        when 2 then image_tag("javascript.png", {class: "icon-sm"})
+        when 3 then image_tag("shell.png", {class: "icon-sm"})
+        when 4 then image_tag("python.jpeg", {class: "icon-sm"})
+        when 5 then image_tag("Csharp.png", {class: "icon-sm"})
         end
 
+    end
+
 end
-
-
