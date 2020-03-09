@@ -71,7 +71,7 @@ module ApplicationHelper
     def delete(listing)        
         if listing.deletable_by?(current_user)
             link_to "delete", listing_path(listing),method: :delete,
-                data: { confirm: "Are you sure?" }, class: "btn btn-primary"
+                data: { confirm: "Are you sure?" }, class: "btn btn-danger"
         else
             return
         end
