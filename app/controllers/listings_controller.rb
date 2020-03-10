@@ -14,6 +14,10 @@ class ListingsController < ApplicationController
         @listings = @search.result.includes(experiences: []).paginate(page: params[:page], per_page: 16)
     end
 
+#-----------------------------------------------------------------------
+# queries purchased column of listing table for true value OR
+# queries and compares FK for user in listing table with current user
+#----------------------------------------------------------------------- 
     def show
         if @listing.purchased then redirect_to listings_path
           elsif current_user.id != @listing.user.id
