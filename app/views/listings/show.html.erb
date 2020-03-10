@@ -7,7 +7,8 @@
   <div class="sidebar col-lg-4 p-0 mx-2 d-md-block">
     <div class="col-12 p-3 price-container">
       <div class="d-flex justify-content-between">
-        <h1><%= favourites(@listing) %></h1>
+        <h1><%= favourites(@listing) %>
+        <%= get_number_of_favourites(@listing) %> </h1>
         <h1><%= "$ #{@listing.price}" %></h1>
       </div>
     </div>
