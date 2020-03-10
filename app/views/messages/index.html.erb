@@ -10,15 +10,18 @@
         <div class="d-flex justify-content-end">
           <p class="text-right bg-secondary p-3 rounded text-white">
             <strong><%= user.username %></strong><br>
-            <%= message.body %></p>
+            <%= message.body %><br>
+            <span class="font-italic">about <%= time_ago_in_words(message.updated_at, {}) %> ago</span>
+            </p>
           <%= show_chat_avatar(@them) %>
-        <%# </div> %>
+        </div>
       <% else %>
         <div class="d-flex justify-content-start">
           <%= show_chat_avatar(@you) %>
           <p class="bg-info p-3 rounded text-white">
             <strong><%= user.username %></strong><br>
-            <%= message.body %>
+            <%= message.body %><br>
+            <span class="font-italic">about <%= time_ago_in_words(message.updated_at, {}) %> ago</span>
           </p>
         <% end %>
       </div>

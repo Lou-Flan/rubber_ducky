@@ -1,11 +1,15 @@
 class MessagesController < ApplicationController
+  before_action :authenticate_user!
+  
     before_action do
      @conversation = Conversation.find(params[:conversation_id])
     end
 
     def index
     @messages = @conversation.messages
-      if @conversation.sender == current_user
+    @messages.where("user_id != ? AND read = ?", current_user.id, false).update_all(read: true)
+      
+    if @conversation.sender == current_user
         @you = @conversation.sender
         @them = @conversation.recipient
       else
@@ -13,26 +17,16 @@ class MessagesController < ApplicationController
         @them = @conversation.sender
       end
 
-      if params[:m]
-        @messages = @conversation.messages
-      end
-
-      if @messages.last
-        if @messages.last.user_id != current_user.id
-          @messages.last.read = true;
-        end
-      end
-
-      @message = @conversation.messages.new
-    end
-
-    def new
       @message = @conversation.messages.new
     end
 
     def create
-    @message = @conversation.messages.new(message_params)
-      if @message.save
+      @message = @conversation.messages.new(message_params)
+      @message.user = current_user
+  
+      if @message.errors.any?
+        render "index"
+      elsif @message.save
         redirect_to conversation_messages_path(@conversation)
       end
     end

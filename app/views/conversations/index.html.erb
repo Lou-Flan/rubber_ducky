@@ -1,14 +1,13 @@
-<div class="ui segment">
- <h3>Mailbox</h3>
- <div class="ui list">
-  <div class="item">
-<% @conversations.each do |conv| %>
-    <%= get_chat_users(conv) %>
-  <% end %>
-
-  </div>
- </div>
+<div class="container-fluid">
+  <h1 class="hero-title text-center m-5">Messages</h5>
 </div>
-
-
-
+<div class="container">
+  <% @conversations.each do |conv| %>
+    <div>
+    <%= get_message_notifications(conv) %>
+      <%= get_chat_users(conv) %>
+      
+     
+    </div>
+  <% end %>
+</div>

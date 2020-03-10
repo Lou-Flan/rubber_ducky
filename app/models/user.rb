@@ -19,10 +19,10 @@ class User < ApplicationRecord
   has_one_attached :avatar
         
   has_many :listings, dependent: :destroy
-  has_many :favorite_listings 
+  has_many :favorite_listings, dependent: :destroy 
   has_many :favorites, through: :favorite_listings, source: :listing
 
-  has_many :conversations, :foreign_key => :sender_id
+  has_many :conversations, :foreign_key => :sender_id, dependent: :destroy
 
   has_many :orders, :foreign_key => :buyer_id
 
