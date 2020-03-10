@@ -23,6 +23,14 @@ module ApplicationHelper
         end
     end
 
+    def show_chat_avatar(user)
+        if user.avatar.attached?
+            return image_tag(user.avatar, {class: "icon-sm"})
+        else
+            return image_tag("user.png", {class: "icon-sm"})
+        end
+    end
+
 #-----------------------------------------------------------------------
 # the current listing is parsed in, a current_user has to be logged in
 # in order for the favourite/unfavourite buttons to show. unless condition

@@ -5,7 +5,7 @@ class ListingsController < ApplicationController
     before_action :experience
 
 #-----------------------------------------------------------------------
-# ransack used to search 
+# ransack used to search for listings with 
 #-----------------------------------------------------------------------  
 
     def index

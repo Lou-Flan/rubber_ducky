@@ -1,38 +1,4 @@
-.container-message{
-    max-width:1170px; margin:auto;
+.messages-container{
+  height: 60vh;
+  width: 100%;
 }
-
-img{ 
-    max-width:100%;
-}
-
-
-.incoming_msg_img {
-  display: inline-block;
-  width: 6%;
-}
-
-.received_msg {
-  display: inline-block;
-    width: 90%;
-  vertical-align: top;
-
-
- }
- .received_withd_msg {
-  background:  none repeat scroll 0 0;
-  font-size: 14px;
-  margin: 0;
-  padding: 5px 10px 5px 12px;
-
-}
-
-#right{
-text-align: end;
-}
-
-.mesgs {
-  padding: 30px 15px 0 25px;
-}
-
-

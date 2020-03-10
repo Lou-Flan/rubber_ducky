@@ -4,8 +4,7 @@ class PagesController < ApplicationController
 # purchased column, then returns the five most recent entries
 #-----------------------------------------------------------------------
   def home
-   @listings = Listing.where(purchased: :false).limit(5).order('id desc')
-    
+   @listings = Listing.where(purchased: :false).limit(5).order('id desc')    
   end
 
   def not_found
