@@ -123,4 +123,13 @@ module ApplicationHelper
 
     end
 
+    def get_chat_users(conv)
+            if conv.sender == current_user
+                link_to conv.recipient.username, conversation_messages_path(conv), class: "btn btn-warning"
+            else
+                link_to conv.sender.username, conversation_messages_path(conv), class: "btn btn-warning"
+            end
+    end
+
+
 end

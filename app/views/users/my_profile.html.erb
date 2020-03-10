@@ -6,7 +6,7 @@
             <% if @user.avatar.attached? %>
             <span>  <%= image_tag(@user.avatar, {class: "avatar"}) %> </span>
             <% else %>
-            <span>  <%= image_tag("default-user-01.png", {class: "avatar"}) %> </span>
+            <span>  <%= image_tag("user.png", {class: "avatar"}) %> </span>
             <% end %>
           <span><h1><%= @user.username %></h1></span>
           <p>Bio: <%= @user.bio %></p>

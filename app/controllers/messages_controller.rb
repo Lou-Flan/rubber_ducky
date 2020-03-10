@@ -5,20 +5,15 @@ class MessagesController < ApplicationController
 
     def index
     @messages = @conversation.messages
-    if @conversation.sender == current_user
-      @you = @conversation.sender
-      @them = @conversation.recipient
-    else
-      @you = @conversation.recipient
-      @them = @conversation.sender
-    end
-      # if @messages.length > 10
-      #   @over_ten = true
-      #   @messages = @messages[-10..-1]
-      # end
+      if @conversation.sender == current_user
+        @you = @conversation.sender
+        @them = @conversation.recipient
+      else
+        @you = @conversation.recipient
+        @them = @conversation.sender
+      end
 
       if params[:m]
-        # @over_ten = false
         @messages = @conversation.messages
       end
 
