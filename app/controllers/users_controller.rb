@@ -3,8 +3,6 @@ class UsersController < ApplicationController
     before_action :authenticate_user!
 
     def my_profile
-        # @listings = current_user.listings
-        # @orders = current_user.orders
     end
 
     def update
@@ -17,8 +15,6 @@ class UsersController < ApplicationController
 
     def edit
     end
-
-
 
 private
 

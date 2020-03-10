@@ -9,12 +9,19 @@ class MessagesController < ApplicationController
     @messages = @conversation.messages
     @messages.where("user_id != ? AND read = ?", current_user.id, false).update_all(read: true)
       
-    if @conversation.sender == current_user
+      if @conversation.sender == current_user
         @you = @conversation.sender
         @them = @conversation.recipient
       else
         @you = @conversation.recipient
         @them = @conversation.sender
+      end
+
+#-----------------------------------------------------------------------
+# authorisation to prevent users viewing other users conversation. 
+#-----------------------------------------------------------------------  
+      if current_user != (@conversation.sender || @conversation.recipient)
+        redirect_to conversations_path
       end
 
       @message = @conversation.messages.new

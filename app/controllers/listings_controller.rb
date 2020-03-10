@@ -3,11 +3,12 @@ class ListingsController < ApplicationController
     before_action :authenticate_user!, only: [:edit, :update, :destroy, :show]
     before_action :set_user_listing, only: [:edit, :update, :destroy]
     before_action :experience
+    before_action :set_search, only: [:manage_listings, :show_favorites]
 
 #-----------------------------------------------------------------------
-# ransack used to search for listings with 
+# ransack used to search for listings by name/dsescription contains 
+# as well as checkbox input of experience
 #-----------------------------------------------------------------------  
-
     def index
         @search = Listing.with_attached_picture.ransack(params[:q])
         @listings = @search.result.includes(experiences: []).paginate(page: params[:page], per_page: 16)
@@ -16,6 +17,10 @@ class ListingsController < ApplicationController
     def show
         if @listing.purchased then redirect_to listings_path
           elsif current_user.id != @listing.user.id
+#-----------------------------------------------------------------------
+# variable used to removed code from view and only show the payment button
+# to users that are not the owner of the listing.
+#----------------------------------------------------------------------- 
             @payment_button = true
         session = Stripe::Checkout::Session.create(
             payment_method_types: ['card'],
@@ -48,12 +53,11 @@ class ListingsController < ApplicationController
 
     def create
         @listing = current_user.listings.create(listing_params)
-        
-        if @listing.errors.any?
-            render "new", error: "Please enter all fields"
-        else
-            redirect_to listing_path(@listing.id)
-        end
+            if @listing.errors.any?
+                render "new", error: "Please enter all fields"
+            else
+                redirect_to listing_path(@listing.id)
+            end
     end
 
     def edit
@@ -72,8 +76,10 @@ class ListingsController < ApplicationController
         redirect_to manage_listings_path
     end
 
-# Add and remove favorite listings
-  # for current_user
+#-----------------------------------------------------------------------
+# adds and removes favourite listings for current user. the listing is either
+# inserted into the favorites table or removed.
+#----------------------------------------------------------------------- 
     def favorite
         type = params[:type]
         if type == "favorite"
@@ -83,22 +89,22 @@ class ListingsController < ApplicationController
             current_user.favorites.delete(@listing)
             redirect_to show_favorites_path, notice: "You unfavorited #{@listing.name}"
         else
-        # Type missing, nothing happens
             redirect_to :back, notice: 'Nothing happened.'
         end
     end
 
     def show_favorites
-        @search = current_user.favorites.with_attached_picture.ransack(params[:q])
-        @listings = @search.result.includes(experiences: [])
     end
 
     def manage_listings
-        @search = current_user.listings.with_attached_picture.ransack(params[:q])
-        @listings = @search.result.includes(experiences: [])
     end
 
     private
+
+    def set_search
+        @search = current_user.listings.with_attached_picture.ransack(params[:q])
+        @listings = @search.result.includes(experiences: [])
+    end
 
     def set_listing
         id = params[:id]
