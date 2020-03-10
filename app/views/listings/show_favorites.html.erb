@@ -1,43 +1,38 @@
 <div class="container-fluid">
   <h1 class="hero-title text-center m-5">ducks you've been peking at</h5>
 </div>
-
 <div class="container p-3">
-
-<div class="d-flex justify-content-around bg-light p-3"> 
-<h5>Sort your favs:</h5>
-  <%= content_tag :th, sort_link(@search, :name) %>
-  <%= content_tag :th, sort_link(@search, :price) %>
-  <%= content_tag :th, sort_link(@search, :created_at) %>
-  <%= content_tag :th, sort_link(@search, :updated_at) %>
-</div>
-
-<div class="row row-cols-1 row-cols-md-4">
-  <% @listings.each do |listing| %>
+  <div class="d-flex justify-content-around bg-light p-3">
+    <h5>Sort your favs:</h5>
+    <%= content_tag :th, sort_link(@search, :name) %>
+    <%= content_tag :th, sort_link(@search, :price) %>
+    <%= content_tag :th, sort_link(@search, :created_at) %>
+    <%= content_tag :th, sort_link(@search, :updated_at) %>
+  </div>
+  <div class="row row-cols-1 row-cols-md-4">
+    <% @listings.each do |listing| %>
       <div class="col-sm-4">
         <div class="card border-light">
-        
           <div class="thumbnail"><%= show_picture(listing) %></div>
-            <div class="card-body">
-                <div class="d-flex justify-content-between">
-                    <h5><%= listing.name %></h5>
-                    <h5><%= "$#{listing.price}" %></h5>
-                </div>
-                
-                <% if listing.purchased == true %>
-                    <p> no longer available </p>
-                    <%= link_to "remove from favorites", favorite_listing_path(listing, type: "unfavorite"), method: :put%>
-                <% else %> 
-                    <p class="card-text text-secondary" id="truncate"><%= listing.description %></p>
-                        <div class= "d-flex justify-content-between">
-                    <%= link_to "show", listing_path(listing.id), class: "show-button m-2" %>
-                        </div>
-                        <div class= "d-flex justify-content-between">
-                    <%= link_to "remove from favorites", favorite_listing_path(listing, type: "unfavorite"), method: :put%>
-                        </div>
-                <% end %>
+          <div class="card-body">
+            <div class="d-flex justify-content-between">
+              <h5><%= listing.name %></h5>
+              <h5><%= "$#{listing.price}" %></h5>
             </div>
-            </div>
+            <% if listing.purchased == true %>
+              <p> no longer available </p>
+              <%= link_to "remove from favorites", favorite_listing_path(listing, type: "unfavorite"), method: :put%>
+            <% else %>
+              <p class="card-text text-secondary" id="truncate"><%= listing.description %></p>
+              <div class= "d-flex justify-content-between">
+                <%= link_to "show", listing_path(listing.id), class: "show-button m-2" %>
+              </div>
+              <div class= "d-flex justify-content-between">
+                <%= link_to "remove from favorites", favorite_listing_path(listing, type: "unfavorite"), method: :put%>
+              </div>
+            <% end %>
+          </div>
         </div>
+      </div>
     <% end %>
-</div>
+  </div>

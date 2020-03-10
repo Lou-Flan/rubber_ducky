@@ -52,7 +52,7 @@ class ListingsController < ApplicationController
         if @listing.errors.any?
             render "new", error: "Please enter all fields"
         else
-            redirect_to listings_path
+            redirect_to listing_path(@listing.id)
         end
     end
 

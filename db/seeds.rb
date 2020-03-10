@@ -17,14 +17,13 @@ end
 
 for i in 1..30
     Listing.create(
-        name: "duck#{i}",
-        description: Faker::Lorem.paragraph(sentence_count: rand(2..5)),
-        price: Faker::Number.between(from: 1, to: 20), 
+        name: Faker::Name.middle_name,
+        description: Faker::Lorem.paragraph(sentence_count: rand(2..10)),
+        price: Faker::Number.between(from: 5, to: 60), 
         user_id: Faker::Number.between(from: 1, to: 5)
         )
     puts "Created #{i} listings"
 end
-
 
 # puts Listing.all.name
 
@@ -35,3 +34,16 @@ for i in tech
     puts "created #{i} languages"
 end
 
+for i in 1..30
+    ListingsExperience.create(
+        listing_id: i,
+        experience_id: rand(1..5)
+    )
+end
+
+for i in 1..30
+    ListingsExperience.create(
+        listing_id: i,
+        experience_id: rand(1..5)
+    )
+end

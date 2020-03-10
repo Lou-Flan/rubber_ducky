@@ -1,39 +1,40 @@
 <div class="container-fluid">
   <h1 class="hero-title text-center m-5">your profile</h5>
 </div>
-
 <div class="container container-fluid">
-
-    <div class="row">
-      <div class="col-12 p-3 bg-light">
+  <div class="row">
+    <div class="col-12 p-3 bg-light">
       <div class="d-flex justify-content-start">
-            <% if @user.avatar.attached? %>
-            <span class="m-3">  <%= image_tag(@user.avatar, {class: "avatar"}) %> </span>
-            <% else %>
-            <span>  <%= image_tag("user.png", {class: "avatar"}) %> </span>
-            <% end %>
-          <span class="m-3"><h1><%= @user.username %></h1></span>
-          </div>
-          <p class="p-3">Bio: <%= @user.bio %></p>
-          <div class="d-flex justify-content-end">
-            <%= link_to "edit avatar or bio", edit_user_path(current_user), class: 'btn btn-warning' %>
-            <%= link_to "edit username or password", edit_registration_path(current_user), class: 'btn btn-warning' %>
+        <% if @user.avatar.attached? %>
+          <span class="m-3">  <%= image_tag(@user.avatar, {class: "avatar"}) %> </span>
+        <% else %>
+          <span>  <%= image_tag("user.png", {class: "avatar"}) %> </span>
+        <% end %>
+        <span class="m-3">
+          <h1><%= @user.username %></h1>
+        </span>
       </div>
-      </div>        
+      <p class="p-3">Bio: <%= @user.bio %></p>
+      <div class="d-flex justify-content-end">
+        <%= link_to "edit avatar or bio", edit_user_path(current_user), class: 'btn btn-warning' %>
+        <%= link_to "edit username or password", edit_registration_path(current_user), class: 'btn btn-warning' %>
+      </div>
     </div>
-<span class="m-3"><h1>purchased ducks:</h1></span>
-    <div class="row">
-      <% @user.orders.each do |order| %>
+  </div>
+  <span class="m-3">
+    <h1>purchased ducks:</h1>
+  </span>
+  <div class="row">
+    <% @user.orders.each do |order| %>
       <div class="col-sm-4">
         <div class="card border-light">
           <%= show_picture(order.listing) %>
           <div class="card-body">
             <h5 class="card-title"><%= order.listing.name %></h5>
-              <%= link_to "view receipt", order.receipt, target: "_blank", class: "btn btn-warning" %>
+            <%= link_to "view receipt", order.receipt, target: "_blank", class: "btn btn-warning" %>
           </div>
         </div>
       </div>
-        <% end %>
-    </div>
-
+    <% end %>
+  </div>
 </div>
