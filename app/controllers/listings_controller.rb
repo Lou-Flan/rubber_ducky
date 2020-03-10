@@ -3,7 +3,6 @@ class ListingsController < ApplicationController
     before_action :authenticate_user!, only: [:edit, :update, :destroy, :show]
     before_action :set_user_listing, only: [:edit, :update, :destroy]
     before_action :experience
-    before_action :set_search, only: [:manage_listings, :show_favorites]
 
 #-----------------------------------------------------------------------
 # ransack used to search for listings by name/dsescription contains 
@@ -98,17 +97,16 @@ class ListingsController < ApplicationController
     end
 
     def show_favorites
+        @search = current_user.favorites.with_attached_picture.ransack(params[:q])
+        @listings = @search.result.includes(experiences: [])
     end
 
     def manage_listings
-    end
-
-    private
-
-    def set_search
         @search = current_user.listings.with_attached_picture.ransack(params[:q])
         @listings = @search.result.includes(experiences: [])
     end
+
+    private
 
     def set_listing
         id = params[:id]
