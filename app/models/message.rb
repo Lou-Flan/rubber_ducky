@@ -5,6 +5,7 @@ class Message < ActiveRecord::Base
 
     before_validation :sanitize_message_inputs, on: [:new, :create, :update, :edit]
 
+
 #-----------------------------------------------------------------------
 # sanitizes input and removes any illegal characters from the message body
 # before saving to database

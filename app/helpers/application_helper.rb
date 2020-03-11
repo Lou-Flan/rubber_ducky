@@ -142,5 +142,28 @@ module ApplicationHelper
         end
     end
 
+#-----------------------------------------------------------------------
+# when the current user has an unread message, the messages tab changes colour.
+# method creates conversations variable by checking conversations table where 
+# the current user is a recipient or a sender and combines.
+# then the method queries the Message table for messages where the user id (message sender)
+# doesn't match the current_user id and where read is false. those messages are 
+# then checked for conversation ids that match the conversations variable. this 
+# is saved in the unread_messages variable, if the count is 0 then no
+# alert is displayed.
+#-----------------------------------------------------------------------  
+
+
+    def get_message_alerts(current_user)
+        conversations = Conversation.where(sender: current_user) + Conversation.where(recipient: current_user)
+        unread_messages = Message.where("user_id != ? AND read = ?", current_user.id, false).where(conversation_id: [conversations]).count
+     
+        if unread_messages == 0
+            return link_to "messages", conversations_path, class: "nav-link"
+        else
+           return link_to "messages", conversations_path, class: "nav-link  bg-danger" 
+        end
+
+      end
 
 end

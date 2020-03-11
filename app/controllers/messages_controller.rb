@@ -20,12 +20,16 @@ class MessagesController < ApplicationController
 #-----------------------------------------------------------------------
 # authorisation to prevent users viewing other users conversation. 
 #-----------------------------------------------------------------------  
-      if current_user != (@conversation.sender || @conversation.recipient)
+      if current_user != @conversation.sender 
+        if current_user != @conversation.recipient
         redirect_to conversations_path
+        end
       end
 
       @message = @conversation.messages.new
     end
+
+
 
     def create
       @message = @conversation.messages.new(message_params)
