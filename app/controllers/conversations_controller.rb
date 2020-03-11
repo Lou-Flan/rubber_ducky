@@ -4,9 +4,6 @@ class ConversationsController < ApplicationController
    def index
     recipient = Conversation.where(recipient: current_user)
     @conversations = current_user.conversations + recipient
-    console
-
-
 
   end
 
