@@ -3,12 +3,12 @@
     <% if !listing.purchased %>
       <div class="col-sm-4">
         <div class="card border-light">
-        <%# SHOW PHOTO METHOD IN APPLICATION HELPER %>
+<%# SHOW PICTURE METHOD IN APPLICATION HELPER %>
           <div class="thumbnail"><%= show_picture(listing) %></div>
           <div class="card-body">
           <div class="d-flex justify-content-between">
             <h5><%= listing.name %></h5>
-              <%# FAVOURITES METHOD IN APPLICATION HELPER %>
+<%# FAVOURITES METHOD IN APPLICATION HELPER %>
               <%= favourites(listing) %>
             
             </div>

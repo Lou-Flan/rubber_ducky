@@ -5,10 +5,19 @@ class MessagesController < ApplicationController
      @conversation = Conversation.find(params[:conversation_id])
     end
 
+#-----------------------------------------------------------------------
+# finds all conversation messages. queries db message table for rows where
+# FK user_id(message sender) doesn't match the current user id and the bool
+# for read column is false - when on the message index page, the bool value
+# for these messages is then updated to true. 
+#----------------------------------------------------------------------- 
     def index
     @messages = @conversation.messages
     @messages.where("user_id != ? AND read = ?", current_user.id, false).update_all(read: true)
-      
+
+#-----------------------------------------------------------------------
+# sets variables to use within views and reduce view logic 
+#-----------------------------------------------------------------------  
       if @conversation.sender == current_user
         @you = @conversation.sender
         @them = @conversation.recipient

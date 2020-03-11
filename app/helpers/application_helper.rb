@@ -1,7 +1,7 @@
 module ApplicationHelper
 #-----------------------------------------------------------------------
-# the current listing is parsed in and checked for an attached or
-# default picture to display
+# the current listing is parsed in and active storage attachments table
+# is checked for an attached or default picture to display
 #-----------------------------------------------------------------------  
     def show_picture(listing)
         if listing.picture.attached?
@@ -12,8 +12,8 @@ module ApplicationHelper
     end 
 
 #-----------------------------------------------------------------------
-# the current user is parsed in and checked for an attached or
-# default avatar to display
+# the current user is parsed in and active storage attachments table is
+# checked for an attached image or default avatar to display
 #-----------------------------------------------------------------------  
     def show_avatar(listing)
         if listing.user.avatar.attached?
@@ -122,7 +122,11 @@ module ApplicationHelper
         end
 
     end
-
+#-----------------------------------------------------------------------
+# conversation_id is parsed in, query checks if current_user id matches
+# the recipient or sender column in the conversation table for the current
+# conversation
+#-----------------------------------------------------------------------  
     def get_chat_users(conv)
             if conv.sender == current_user
                 link_to conv.recipient.username, conversation_messages_path(conv), class: "btn btn-warning"
@@ -135,10 +139,10 @@ module ApplicationHelper
 
     def get_message_notifications(conv)
         if conv.messages.last.user != current_user
-            "received new message about #{time_ago_in_words(conv.messages.last.updated_at)} ago from"
+            "received new message #{time_ago_in_words(conv.messages.last.updated_at)} ago from"
 
         else
-           " you sent a message#{time_ago_in_words(conv.messages.last.updated_at)} ago to"
+           " you sent a message #{time_ago_in_words(conv.messages.last.updated_at)} ago to"
         end
     end
 
@@ -152,8 +156,6 @@ module ApplicationHelper
 # is saved in the unread_messages variable, if the count is 0 then no
 # alert is displayed.
 #-----------------------------------------------------------------------  
-
-
     def get_message_alerts(current_user)
         conversations = Conversation.where(sender: current_user) + Conversation.where(recipient: current_user)
         unread_messages = Message.where("user_id != ? AND read = ?", current_user.id, false).where(conversation_id: [conversations]).count

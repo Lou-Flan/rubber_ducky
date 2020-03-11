@@ -5,8 +5,9 @@ class ListingsController < ApplicationController
     before_action :experience
 
 #-----------------------------------------------------------------------
-# ransack used to search for listings by name/dsescription contains 
+# ransack used to search for listings by name/description contains 
 # as well as checkbox input of experience
+# search variable also includes any searches where experiences are parsed in
 #-----------------------------------------------------------------------  
     def index
         @search = Listing.with_attached_picture.ransack(params[:q])
@@ -21,7 +22,7 @@ class ListingsController < ApplicationController
         if @listing.purchased then redirect_to listings_path
           elsif current_user.id != @listing.user.id
 #-----------------------------------------------------------------------
-# variable used to removed code from view and only show the payment button
+# variable used to remove code from view and only show the payment button
 # to users that are not the owner of the listing.
 #----------------------------------------------------------------------- 
             @payment_button = true

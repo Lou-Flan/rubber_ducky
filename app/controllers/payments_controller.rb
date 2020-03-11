@@ -16,7 +16,7 @@ class PaymentsController < ApplicationController
             listing.purchased = true
             listing.save
 #-----------------------------------------------------------------------
-# a new order row is created upon payment intent success
+# a new order row is created upon payment intent success and attribute data parsed
 #----------------------------------------------------------------------- 
             order = Order.create(buyer: buyer, listing: listing, striperef: payment_intent.id, receipt: payment_intent.charges.data[0].receipt_url)
             order.save
