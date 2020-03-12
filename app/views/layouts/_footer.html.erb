@@ -1,5 +1,5 @@
 <nav class="footer fixed-bottom">
-	<div class="row">
+	<div class="row align-items-end">
 	<div class="col-12 col-6 col-md-3 text-md-left text-center">
 		<p>dev-duck-swap</p>
 	</div>
@@ -15,7 +15,7 @@
 	</div>
 
 	<% if current_user %>
-		<div class="col-12 col-6 col-md-3 text-md-center text-center">
+		<div class="col-12 col-6 col-md-3 text-md-left text-center">
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item active">
 				<%= link_to "#{current_user.username}'s profile", profile_path, class: "nav-link" %>
@@ -30,7 +30,7 @@
 	</div>
 	<% end %>
 
-		<div class="col-12 col-6 col-md-3 text-md-right text-center">
+		<div class="col-12 col-6 col-md-3 text-md-left text-center">
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item active">
 				<a class="nav-link" href="https://twitter.com/FlangerHanger">Twitter</a>

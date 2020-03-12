@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <h1 class="hero-title text-center m-5">Messages</h5>
 </div>
-<div class="container">
+<div class="container" style="height: 50vh;">
   <% @conversations.each do |conv| %>
     <div>
     <%= get_message_notifications(conv) %>
