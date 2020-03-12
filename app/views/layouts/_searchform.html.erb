@@ -1,35 +1,25 @@
 <div class="container bg-light p-4">
-
-<%= search_form_for @search do |f| %>
-<h5><%= f.label "find a duck:" %></h5>
-
-  <%= f.search_field :name_or_description_cont, class: "form-control" %>
- 
-<div class="d-flex justify-content-start">
-    <% Experience.all.each do |exp| %>
-<div class="custom-control ">
-        <%= check_box_tag "q[experiences_language_cont_any][]", exp.language, false, class: "custom-checkbox" %>
+  <%= search_form_for @search do |f| %>
+    <h5><%= f.label "find a duck:" %></h5>
+    <%= f.search_field :name_or_description_cont, class: "form-control" %>
+    <div class="d-flex justify-content-start">
+      <% Experience.all.each do |exp| %>
+        <div class="custom-control ">
+          <%= check_box_tag "q[experiences_language_cont_any][]", exp.language, false, class: "custom-checkbox" %>
           <%= exp.language %>
-  </div>        
+        </div>
+      <% end %>
+    </div>
+    <div class="d-flex justify-content-end">
+      <%= f.submit "search", class: "btn btn-outline-success" %>
+      <%= link_to "Reset Search", listings_path, class: "btn btn-outline-warning" %>
     <% end %>
-</div>
-<div class="d-flex justify-content-end">
-  <%= f.submit "search", class: "btn btn-outline-success" %>
-
-  <%= link_to "Reset Search", listings_path, class: "btn btn-outline-warning" %>
-<% end %>
-
-</div>
-
-
-
-<h5>Sort ducks by:</h5>
-<div class="d-flex justify-content-around bg-light"> 
-  <%= content_tag :th, sort_link(@search, :name) %>
-  <%= content_tag :th, sort_link(@search, :price) %>
-  <%= content_tag :th, sort_link(@search, :created_at) %>
-  <%= content_tag :th, sort_link(@search, :updated_at) %>
-
-</div>
-
+  </div>
+  <h5>Sort ducks by:</h5>
+  <div class="d-flex justify-content-around bg-light">
+    <%= content_tag :th, sort_link(@search, :name) %>
+    <%= content_tag :th, sort_link(@search, :price) %>
+    <%= content_tag :th, sort_link(@search, :created_at) %>
+    <%= content_tag :th, sort_link(@search, :updated_at) %>
+  </div>
 </div>

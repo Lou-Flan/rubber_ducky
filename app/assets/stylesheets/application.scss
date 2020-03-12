@@ -255,3 +255,83 @@ body {
   border: 2px solid black;
   text-decoration: none;
 }
+
+
+.speech-bubble {
+	position: relative;
+	background: #55b4b0;
+	border-radius: .4em;
+}
+
+.speech-bubble:after {
+	content: '';
+	position: absolute;
+	right: 0;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 37px solid transparent;
+	border-left-color: #55b4b0;
+	border-right: 0;
+	margin-top: -37px;
+	margin-right: -37px;
+}
+
+
+
+// @import url('https://fonts.googleapis.com/css?family=Roboto:700');
+
+// body {
+//   margin:0px;
+//   font-family:'Roboto';
+//   text-align:center;
+// }
+
+#container {
+  color:rgb(18, 185, 197);
+  font-weight:bold;
+  font-size: 2em;
+  font-family: $logo-font;
+  padding-top:10%;  
+  width:1000px;
+  bottom:45%;
+  display:block;
+  text-align: center;
+}
+
+#flip {
+  height:50px;
+  overflow:hidden;
+  width: 100%;
+}
+
+#flip > div > div {
+  color: black;
+  padding:4px 12px;
+  height:50px;
+  margin-bottom:45px;
+  display:inline-block;
+}
+
+#flip div:first-child {
+  animation: show 10s linear infinite;
+}
+
+
+@keyframes show {
+  0% {margin-top:-280px;}
+  5% {margin-top:-180px;}
+  33% {margin-top:-180px;}
+  38% {margin-top:-90px;}
+  66% {margin-top:-90px;}
+  71% {margin-top:0px;}
+  99.99% {margin-top:0px;}
+  100% {margin-top:-270px;}
+}
+
+.chat-duck{
+  width: 200px;
+  height: auto;
+  object-fit: contain;
+  margin-left: 40%;
+}

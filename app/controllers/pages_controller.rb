@@ -12,4 +12,7 @@ class PagesController < ApplicationController
 
   def payment_success
   end
+
+  def talk_to_a_duck
+  end
 end
