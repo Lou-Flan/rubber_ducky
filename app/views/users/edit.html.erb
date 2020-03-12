@@ -1,1 +1,11 @@
-<%= render "form"%>
+<div class="container-fluid">
+  <h1 class="hero-title text-center m-5">edit <%= current_user.username %></h5>
+</div>
+<div class="container">
+  <% if @user.avatar.attached? %>
+    <span class="m-3">  <%= image_tag(@user.avatar, {class: "avatar"}) %> </span>
+  <% else %>
+    <span>  <%= image_tag("user.png", {class: "avatar"}) %> </span>
+  <% end %>
+  <%= render "form" %>
+</div>
