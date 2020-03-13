@@ -128,10 +128,10 @@ The app does not distinguish between buyers and sellers, all profiles are set wi
 
 ![Home](./docs/resources/wireframes/home.png)
 ![Profile](./docs/resources/wireframes/profile.png)
-![Manage Listings](./docs/resources/wireframes/Manage_Listings.png)
+![Manage Listings](./docs/resources/wireframes/manage_listings.png)
 ![Favourites](./docs/resources/wireframes/favourites.png)
 ![Listings](./docs/resources/wireframes/listings.png)
-![Create](./docs/resources/wireframes/Create_a_listing.png)
+![Create](./docs/resources/wireframes/create_a_listing.png)
 ![Individual Listing](./docs/resources/wireframes/individual_listing.png)
 ![Purchased](./docs/resources/wireframes/purchased.png)
 ***
@@ -179,22 +179,39 @@ This application uses the following third-party services:
 ### Describe your projects models in terms of the relationships (active record associations) they have with each other
 
 A user ```has_many``` listings, a listing ```belongs_to``` a user.
+
 A user ```has_many``` favourites ```through``` favourite listings.
+
 A user ```has_many``` favourite listings, a favourite listing ```belongs_to``` a user.
+
 A user ```has_one_attached``` avatar, an avatar ```belongs_to``` a user.
+
 A user (FK buyer) ```has_many``` orders, an order ```belongs_to``` a buyer.
+
 A user ```has_many``` messages, a message ```belongs_to``` a user.
+
 A user (FK sender) ```has_many``` conversations, a conversation ```belongs_to``` a sender.
+
 A user (FK recipient) ```has_many``` conversations, a conversation ```belongs_to``` a recipient.
+
 A conversation ```has_many``` messages, a message ```belongs_to``` a conversation.
+
 A listing ```has_one_attached``` picture, a picture ```belongs_to``` a listing.
+
 A listing ```has_one``` order, an order ```belongs_to``` a listing.
+
 A listing ```belongs_to``` a user, a user ```has_many``` listings.
+
 A listing ```has_many``` favourite listings, a favourite listing ```belongs_to``` a listing.
+
 A listing ```has_many``` favourited by ```through``` favourite listings.
+
 A listing ```has_many``` listings experience, a listings experience ```belongs_to``` a listing.
+
 A listing ```has_many``` experiences ```through``` listings experience.
+
 A listings experience ```belongs_to``` an experience, an experience ```has_many``` listings experiences.
+
 An experience ```has_many``` listings ```through``` listings experience.
 
 ```
