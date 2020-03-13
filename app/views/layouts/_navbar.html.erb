@@ -7,7 +7,7 @@
     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
       <%# change the nav bar items based on whether the user is logged in and if they have listings/favourites %>
       <% if current_user %>
-      <li class="<%= 'active' if current_page?(duck_now_path) %>">
+        <li class="<%= 'active' if current_page?(duck_now_path) %>">
           <%= link_to "talk with a duck", duck_now_path, class: "nav-link" %>
         </li>
         <li class="<%= 'active' if current_page?(listings_path) %>">
@@ -17,7 +17,7 @@
           <%= link_to "sell", new_listing_path, class: "nav-link" %>
         </li>
         <li class="<%= 'active' if current_page?(conversations_path) %>">
-<%# METHOD IN APPLICATION HELPER - DISPLAYS MESSAGE ALERTS %>
+          <%# METHOD IN APPLICATION HELPER - DISPLAYS MESSAGE ALERTS %>
           <%= get_message_alerts(current_user) %>
         </li>
         <% if Listing.exists?(user_id: current_user.id) %>
@@ -25,35 +25,31 @@
             <%= link_to "manage listings", manage_listings_path, class: "nav-link" %>
           </li>
         <% end %>
-
         <% if current_user.favorite_ids.length > 0 %>
           <li class="<%= 'active' if current_page?(show_favorites_path) %>">
             <%= link_to "favorites", show_favorites_path, class: "nav-link" %>
           </li>
         <% end %>
-
         <li class="<%= 'active' if current_page?(profile_path) %>">
           <%= link_to "profile", profile_path, class: "nav-link" %>
         </li>
-
-          <li class="<%= 'active' if current_page?(destroy_user_session_path) %>">
-            <%= link_to "log out", destroy_user_session_path,
+        <li class="<%= 'active' if current_page?(destroy_user_session_path) %>">
+          <%= link_to "log out", destroy_user_session_path,
                 method: :delete, class: "nav-link" %>
-          </li>
+        </li>
       <% else %>
-        
-          <li class="<%= 'active' if current_page?(duck_now_path) %>">
-            <%= link_to "talk with a duck", duck_now_path, class: "nav-link" %>
-          </li>
-          <li class="<%= 'active' if current_page?(listings_path) %>">
-            <%= link_to "ducks", listings_path, class: "nav-link" %>
-          </li>
-          <li class="<%= 'active' if current_page?(new_user_registration_path) %>">
-            <%= link_to "sign up", new_user_registration_path, class: "nav-link" %>
-          </li>
-          <li class="<%= 'active' if current_page?(new_user_session_path) %>">
-            <%= link_to "login", new_user_session_path, class: "nav-link" %>
-          </li>
+        <li class="<%= 'active' if current_page?(duck_now_path) %>">
+          <%= link_to "talk with a duck", duck_now_path, class: "nav-link" %>
+        </li>
+        <li class="<%= 'active' if current_page?(listings_path) %>">
+          <%= link_to "ducks", listings_path, class: "nav-link" %>
+        </li>
+        <li class="<%= 'active' if current_page?(new_user_registration_path) %>">
+          <%= link_to "sign up", new_user_registration_path, class: "nav-link" %>
+        </li>
+        <li class="<%= 'active' if current_page?(new_user_session_path) %>">
+          <%= link_to "login", new_user_session_path, class: "nav-link" %>
+        </li>
       <% end %>
     </ul>
   </div>

@@ -1,16 +1,12 @@
 <div class="container-fluid">
   <h1 class="hero-title text-center m-5">find a wise-quacker</h5>
 </div>
-
 <%= render "layouts/searchform"%>
-
 <div class="row row-cols-1 row-cols-md-4">
   <%= render "listings/display_listings"%>
 </div>
-
 <div class="container">
-<span class="d-block">
+  <span class="d-block">
     <%= will_paginate @listings, list_classes: %w(pagination justify-content-end) %>
-    </span>
+  </span>
 </div>
-

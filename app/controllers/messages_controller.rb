@@ -38,8 +38,10 @@ class MessagesController < ApplicationController
       @message = @conversation.messages.new
     end
 
-
-
+#-----------------------------------------------------------------------
+# creates a new message linked to the current conversation id. takes :body and
+# :user id params to add data to the message table in correct attributes.
+#-----------------------------------------------------------------------  
     def create
       @message = @conversation.messages.new(message_params)
       @message.user = current_user
